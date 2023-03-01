@@ -1,0 +1,11 @@
+<h1>Expenses</h1>
+<ng-container *ngFor="let expense of expenses">
+  <app-expense-item [item]="expense"></app-expense-item>
+  <button type="button" (click)="deleteItem(expense)">X</button>
+  <button type="button" (click)="openEditDialog(expense)">-></button>
+</ng-container>
+<!-- <app-manage-dialog *ngIf="dialogService.isDialogVisible" (onSubmitEvent)="getFormData($event)"></app-manage-dialog> -->
+<p>
+  <button type="button" (click)="openDialog()">+</button>
+</p>
+
