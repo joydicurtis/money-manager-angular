@@ -1,1 +1,11 @@
-<p>incomings works!</p>
+<h1>Incomings</h1>
+<ng-container *ngFor="let incoming of incomings">
+  <app-incoming-item [item]="incoming"></app-incoming-item>
+  <button type="button" (click)="deleteItem(incoming)">X</button>
+  <button type="button" (click)="openEditDialog(incoming)">-></button>
+</ng-container>
+<!-- <app-manage-dialog *ngIf="dialogService.isDialogVisible" (onSubmitEvent)="getFormData($event)"></app-manage-dialog> -->
+<p>
+  <button type="button" (click)="openDialog()">+</button>
+</p>
+
