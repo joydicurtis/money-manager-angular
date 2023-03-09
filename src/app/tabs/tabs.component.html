@@ -1,7 +1,8 @@
-<div class="tabs__nav">
-  <div class="tabs__nav-item">Incomings</div>
-  <div class="tabs__nav-item">Expenses</div>
-</div>
-
-<app-incomings></app-incomings>
-<app-expenses></app-expenses>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="First">
+    <app-incomings></app-incomings>
+  </mat-tab>
+  <mat-tab label="Second">
+    <app-expenses></app-expenses>
+  </mat-tab>
+</mat-tab-group>
