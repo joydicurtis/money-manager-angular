@@ -29,6 +29,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExpenseItemComponent } from './expenses/expense-item/expense-item.component';
 import { ManageExpensesDialogComponent } from './expenses/manage-expenses-dialog/manage-expenses-dialog.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const firebaseConfig = [
   AngularFireAuthModule,
@@ -63,6 +64,7 @@ const firebaseConfig = [
     CommonModule,
     FirestoreModule,
     MatDialogModule,
+    MatTabsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
