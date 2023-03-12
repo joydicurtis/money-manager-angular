@@ -1,1 +1,26 @@
+@use "@angular/material" as mat;
+@use "theme" as theme;
+@use "../incomings/incomings.component" as incomings;
+@use "../incomings/incoming-item/incoming-item.component" as incoming-item;
+@use "../incomings/manage-dialog/manage-dialog.component" as incoming-dialog;
+@use "../expenses/expenses.component" as expenses;
+@use "../expenses/expense-item/expense-item.component" as expense-item;
+@use "../expenses/manage-expenses-dialog/manage-expenses-dialog.component" as expense-dialog;
+@use "../tabs/tabs.component.scss" as tabs;
+@include mat.core();
+
+@import './_mat-library/mat-library';
+
+@include mat.core-theme(theme.$my-app-theme);
+@include mat.button-theme(theme.$my-app-theme);
+
+@import 'colors';
 @import 'layout';
+
+@include incomings.theme(theme.$my-app-theme);
+@include incoming-item.theme(theme.$my-app-theme);
+@include incoming-dialog.theme(theme.$my-app-theme);
+@include expenses.theme(theme.$my-app-theme);
+@include expense-item.theme(theme.$my-app-theme);
+@include expense-dialog.theme(theme.$my-app-theme);
+@include tabs.theme(theme.$my-app-theme);

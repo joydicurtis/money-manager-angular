@@ -1,9 +1,9 @@
 export const incomingsCategories = [
-  { id: 0, name: 'Salary', class: 'fas fa-money-bill'},
-  { id: 1, name: 'Freelance', class: 'fas fa-laptop'},
-  { id: 2, name: 'Investments', class: 'fas fa-briefcase'},
-  { id: 3, name: 'Dividents', class: 'fas fa-seedling'},
-  { id: 4, name: 'Awards', class: 'fas fa-trophy'},
-  { id: 5, name: 'Rental', class: 'fas fa-home'},
-  { id: 6, name: 'Other', class: 'fas fa-coins'}
+  { id: 0, name: 'Salary', icon: 'work'},
+  { id: 1, name: 'Freelance', icon: 'computer'},
+  { id: 2, name: 'Investments', icon: 'savings'},
+  { id: 3, name: 'Dividents', icon: 'moving'},
+  { id: 4, name: 'Awards', icon: 'leaderboard'},
+  { id: 5, name: 'Rental', icon: 'real_estate_agent'},
+  { id: 6, name: 'Other', icon: 'payments'}
 ]

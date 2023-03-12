@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { filter, map } from 'rxjs';
 import { ManageDialogComponent } from './manage-dialog/manage-dialog.component';
@@ -8,7 +8,12 @@ import { ManageService } from '../services/manage.service';
   selector: 'app-incomings',
   templateUrl: './incomings.component.html',
   styleUrls: ['./incomings.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'incomings'
+  }
 })
+
 export class IncomingsComponent {
   public incomings: any;
   manageDialogRef!: MatDialogRef<ManageDialogComponent>;

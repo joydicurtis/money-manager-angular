@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { expensesCategories } from './categories.const';
@@ -6,7 +6,11 @@ import { expensesCategories } from './categories.const';
 @Component({
   selector: 'app-manage-expenses-dialog',
   templateUrl: './manage-expenses-dialog.component.html',
-  styleUrls: ['./manage-expenses-dialog.component.scss']
+  styleUrls: ['./manage-expenses-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'dialog'
+  }
 })
 export class ManageExpensesDialogComponent {
   date: any;
@@ -36,24 +40,25 @@ export class ManageExpensesDialogComponent {
   }
 
   loadData() {
-    console.log('data', this.data);
     if (this.data) {
       this.operationFormGroup.setValue({sumControl: this.data.sum, categories: this.expensesCategories[this.data.category.id], dateControl: this.data.date.toDate(), noteControl: this.data.note});
     }
   }
 
   submit(form: any) {
-    this.isSubmitted = true;
-    if (!this.data) {
-      this.data = form;
+    if (form.valid) {
+      this.isSubmitted = true;
+      if (!this.data) {
+        this.data = form;
+      }
+      else {
+        this.data.sum = form.controls.sumControl.value;
+        this.data.date = form.controls.dateControl.value;
+        this.data.category = form.controls.categories.value;
+        this.data.note = form.controls.noteControl.value;
+      }
+      this.dialogRef.close(this.data);
     }
-    else {
-      this.data.sum = form.controls.sumControl.value;
-      this.data.date = form.controls.dateControl.value;
-      this.data.category = form.controls.categories.value;
-      this.data.note = form.controls.noteControl.value;
-    }
-    this.dialogRef.close(this.data);
   }
 
   close() {

@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
 html,
 body {
@@ -8,11 +10,11 @@ body {
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  background-color: black;
-  color: white;
   min-height: 100%;
+  background-color: $color-background;
+  color: $color-text;
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
+  background-color: #D1C4E9;
 }
 
 app-root {
@@ -28,4 +30,8 @@ app-root {
   min-height: 100%;
   max-width: 30rem;
   margin: 0 auto;
+}
+
+.cdk-overlay-pane {
+  max-width: 90vw!important;
 }

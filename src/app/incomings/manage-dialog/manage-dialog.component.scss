@@ -1,16 +1,82 @@
-// .dialog {
-//   display: block;
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   bottom: 0;
-//   left: 0;
-//   background-color: rgba(0, 0, 0, 0.5);
-//   &__body {
-//     padding: 1.5rem;
-//     background-color: gray;
-//     max-width: 20rem;
-//     min-height: 30rem;
-//     margin: 1rem auto;
-//   }
-// }
+@use "sass:map";
+@use "@angular/material" as mat;
+@import "../../styles/colors";
+
+@mixin theme($theme) {
+  $typography: mat.get-typography-config($theme);
+  $colors: map.get($theme, color);
+  $primary: map.get($colors, primary);
+  $caution: map.get($colors, caution);
+  $dark: map.get($colors, dark);
+  $danger: map.get($colors, danger);
+
+  .dialog {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+    &__categories {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    &__categories-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2px;
+      border-radius: 8px;
+      width: calc(100%/3 - 6px);
+    }
+    &__categories-item-name {
+      @include mat.typography-level($typography, 'caption');
+    }
+    .mat-mdc-dialog-title {
+      display: flex;
+      align-items: center;
+      padding: 0 8px 0 24px;
+      margin: 0;
+    }
+    .mdc-dialog__content{
+      padding: 8px 24px!important;
+    }
+    .mat-mdc-form-field {
+      width: 100%;
+      @include mat.typography-level($typography, 'caption');
+    }
+    .mat-mdc-form-field-input-control {
+      &.mat-mdc-input-element {
+        @include mat.typography-level($typography, 'body-1');
+      }
+    }
+    .mat-mdc-radio-button {
+      width: 100%;
+      text-align: center;
+      padding: 8px;
+      &.mat-mdc-radio-checked {
+        background-color: $color-success;
+        border-radius: 8px;
+      }
+      .mdc-radio {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      .mdc-form-field {
+        >label {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+  .mat-mdc-dialog-actions {
+    padding: 16px!important;
+    justify-content: end!important;
+  }
+}

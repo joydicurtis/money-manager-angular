@@ -1,9 +1,12 @@
-<li>
-  {{ item.sum }}
-  -
-  {{ date | date}}
-  -
-  {{ item.category.name }}
-  -
+<div class="expense-item__info">
+  <div class="expense-item__description">
+    <div class="expense-item__category">{{ item.category.name }}</div>
+    <div class="expense-item__date">{{ date | date}}</div>
+  </div>
+  <div class="expense-item__sum">
+    {{ item.sum }}
+  </div>
+</div>
+<div class="expense-item__note">
   {{ item.note }}
-</li>
+</div>

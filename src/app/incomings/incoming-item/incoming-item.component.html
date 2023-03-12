@@ -1,9 +1,12 @@
-<li>
-  {{ item.sum }}
-  -
-  {{ date | date}}
-  -
-  {{ item.category.name }}
-  -
+<div class="incoming-item__info">
+  <div class="incoming-item__description">
+    <div class="incoming-item__category">{{ item.category.name }}</div>
+    <div class="incoming-item__date">{{ date | date}}</div>
+  </div>
+  <div class="incoming-item__sum">
+    {{ item.sum }}
+  </div>
+</div>
+<div class="incoming-item__note">
   {{ item.note }}
-</li>
+</div>

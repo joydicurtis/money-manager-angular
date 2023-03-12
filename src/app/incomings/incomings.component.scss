@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@import '../styles/colors';
+
+@mixin theme($theme) {
+  $typography: mat.get-typography-config($theme);
+  $colors: map.get($theme, color);
+  $primary: map.get($colors, primary);
+  $caution: map.get($colors, caution);
+  $dark: map.get($colors, dark);
+  $danger: map.get($colors, danger);
+
+  .incomings {
+    display: block;
+    position: relative;
+    padding: 16px;
+    height: 100%;
+
+    &__title {
+      @include mat.typography-level($typography, 'headline-1');
+      margin: 0 0 16px;
+    }
+
+    &__item {
+      display: flex;
+      justify-content: space-between;;
+      gap: 8px;
+      padding: 0 0 0 16px;
+      border-radius: 8px;
+      margin-bottom: 4px;
+      background-color: $color-success;
+    }
+
+    &__item-action {
+      flex-shrink: 0;
+    }
+
+    &__action {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+    }
+  }
+}
