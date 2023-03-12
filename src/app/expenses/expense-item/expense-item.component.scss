@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../../styles/colors";
+
+@mixin theme($theme) {
+  $typography: mat.get-typography-config($theme);
+  $colors: map.get($theme, color);
+  $primary: map.get($colors, primary);
+  $caution: map.get($colors, caution);
+  $dark: map.get($colors, dark);
+  $danger: map.get($colors, danger);
+  .expense-item {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    &__note {
+      @include mat.typography-level($typography, 'caption');
+      color: #757575;
+    }
+    &__info {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px
+    }
+    &__category {
+      @include mat.typography-level($typography, 'body-2');
+      margin-bottom: 4px;
+    }
+    &__date {
+      @include mat.typography-level($typography, 'caption');
+      color: #757575;
+    }
+    &__sum {
+      @include mat.typography-level($typography, 'subtitle-1');
+    }
+  }
+}

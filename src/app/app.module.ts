@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ExpenseItemComponent } from './expenses/expense-item/expense-item.component';
 import { ManageExpensesDialogComponent } from './expenses/manage-expenses-dialog/manage-expenses-dialog.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon';
 
 const firebaseConfig = [
   AngularFireAuthModule,
@@ -54,6 +55,7 @@ const firebaseConfig = [
     ReactiveFormsModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatNativeDateModule,
     BrowserAnimationsModule,

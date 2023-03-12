@@ -40,10 +40,6 @@ export class ManageDialogComponent implements OnInit {
     }
   }
 
-  // getFormData(value: any) {
-  //   this.newItemEvent.emit(value)
-  // }
-
   loadData() {
     if (this.data) {
       this.operationFormGroup.setValue({sumControl: this.data.sum, categories: this.incomingsCategories[this.data.category.id], dateControl: this.data.date.toDate(), noteControl: this.data.note});
@@ -52,16 +48,18 @@ export class ManageDialogComponent implements OnInit {
 
   submit(form: any) {
     this.isSubmitted = true;
-    if (!this.data) {
-      this.data = form;
+    if (form.valid) {
+      if (!this.data) {
+        this.data = form;
+      }
+      else {
+        this.data.sum = form.controls.sumControl.value;
+        this.data.date = form.controls.dateControl.value;
+        this.data.category = form.controls.categories.value;
+        this.data.note = form.controls.noteControl.value;
+      }
+      this.dialogRef.close(this.data);
     }
-    else {
-      this.data.sum = form.controls.sumControl.value;
-      this.data.date = form.controls.dateControl.value;
-      this.data.category = form.controls.categories.value;
-      this.data.note = form.controls.noteControl.value;
-    }
-    this.dialogRef.close(this.data);
   }
 
   close() {

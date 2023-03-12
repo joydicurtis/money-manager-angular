@@ -1,11 +1,20 @@
 <h1>Expenses</h1>
 <ng-container *ngFor="let expense of expenses">
-  <app-expense-item [item]="expense"></app-expense-item>
-  <button type="button" (click)="deleteItem(expense)">X</button>
-  <button type="button" (click)="openEditDialog(expense)">-></button>
+  <div class="expenses__item">
+    <app-expense-item [item]="expense"></app-expense-item>
+    <div class="expenses__item-action">
+      <button mat-icon-button color="primary" aria-label="Edit incoming" (click)="openEditDialog(expense)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" aria-label="Delete incoming" (click)="deleteItem(expense)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
 </ng-container>
-<!-- <app-manage-dialog *ngIf="dialogService.isDialogVisible" (onSubmitEvent)="getFormData($event)"></app-manage-dialog> -->
-<p>
-  <button type="button" (click)="openDialog()">+</button>
-</p>
+<div class="incomings__action">
+  <button color="primary" mat-fab (click)="openDialog()" aria-label="Add incoming">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
 

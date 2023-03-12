@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageExpensesDialogComponent } from './manage-expenses-dialog/manage-expenses-dialog.component';
 import { ManageService } from '../services/manage.service';
@@ -6,7 +6,11 @@ import { ManageService } from '../services/manage.service';
 @Component({
   selector: 'app-expenses',
   templateUrl: './expenses.component.html',
-  styleUrls: ['./expenses.component.scss']
+  styleUrls: ['./expenses.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    'class': 'expenses'
+  }
 })
 export class ExpensesComponent implements OnInit {
   public expenses: any;
