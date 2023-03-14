@@ -1,0 +1,12 @@
+<div class="transaction-item__info">
+  <div class="transaction-item__description">
+    <div class="transaction-item__category">{{ item.category.name }}</div>
+    <div class="transaction-item__date">{{ date | date}}</div>
+  </div>
+  <div class="transaction-item__sum">
+    {{ item.sum }}
+  </div>
+</div>
+<div class="transaction-item__note">
+  {{ item.note }}
+</div>

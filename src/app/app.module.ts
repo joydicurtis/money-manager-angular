@@ -4,9 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
-import { IncomingsComponent } from './incomings/incomings.component';
-import { ExpensesComponent } from './expenses/expenses.component';
-import { ManageDialogComponent } from './incomings/manage-dialog/manage-dialog.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,13 +21,14 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { FirestoreModule } from '@angular/fire/firestore';
 import { ManageService } from './services/manage.service';
 import { CommonModule } from '@angular/common';
-import { IncomingItemComponent } from './incomings/incoming-item/incoming-item.component';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ExpenseItemComponent } from './expenses/expense-item/expense-item.component';
-import { ManageExpensesDialogComponent } from './expenses/manage-expenses-dialog/manage-expenses-dialog.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { TransactionsDialogComponent } from './transactions/transactions-dialog/transactions-dialog.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { TransactionItemComponent } from './transactions/transaction-item/transaction-item.component';
 
 const firebaseConfig = [
   AngularFireAuthModule,
@@ -40,13 +38,10 @@ const firebaseConfig = [
   declarations: [
     AppComponent,
     ChartComponent,
-    IncomingsComponent,
-    ExpensesComponent,
-    ManageDialogComponent,
     TabsComponent,
-    IncomingItemComponent,
-    ExpenseItemComponent,
-    ManageExpensesDialogComponent
+    TransactionsComponent,
+    TransactionsDialogComponent,
+    TransactionItemComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +56,7 @@ const firebaseConfig = [
     BrowserAnimationsModule,
     MatRadioModule,
     MatButtonModule,
+    MatButtonToggleModule,
     AppRoutingModule,
     BrowserModule,
     CommonModule,

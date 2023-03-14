@@ -10,7 +10,7 @@
   $dark: map.get($colors, dark);
   $danger: map.get($colors, danger);
 
-  .incomings {
+  .transactions {
     display: block;
     position: relative;
     padding: 16px;
@@ -28,7 +28,12 @@
       padding: 0 0 0 16px;
       border-radius: 8px;
       margin-bottom: 4px;
+    }
+    &__item--incoming {
       background-color: $color-success;
+    }
+    &__item--expense {
+      background-color: $color-warn;
     }
 
     &__item-action {
