@@ -10,7 +10,7 @@
   $dark: map.get($colors, dark);
   $danger: map.get($colors, danger);
 
-  .dialog {
+  .transaction-dialog {
     &__header {
       display: flex;
       justify-content: space-between;
@@ -30,8 +30,17 @@
       border-radius: 8px;
       width: calc(100%/3 - 6px);
     }
+    &__type {
+      margin-bottom: 16px;
+    }
     &__categories-item-name {
       @include mat.typography-level($typography, 'caption');
+    }
+    .mat-button-toggle-group {
+      width: 100%;
+      .mat-button-toggle {
+        flex: 1 1 50%;
+      }
     }
     .mat-mdc-dialog-title {
       display: flex;
