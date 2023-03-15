@@ -16,8 +16,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { AngularFireAuthModule } from "@angular/fire/compat/auth";
-import { AngularFireModule } from '@angular/fire/compat';
 import { FirestoreModule } from '@angular/fire/firestore';
 import { ManageService } from './services/manage.service';
 import { CommonModule } from '@angular/common';
@@ -30,10 +28,6 @@ import { TransactionsDialogComponent } from './transactions/transactions-dialog/
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { TransactionItemComponent } from './transactions/transaction-item/transaction-item.component';
 
-const firebaseConfig = [
-  AngularFireAuthModule,
-  AngularFireModule.initializeApp(environment.firebase) // Your config
-];
 @NgModule({
   declarations: [
     AppComponent,

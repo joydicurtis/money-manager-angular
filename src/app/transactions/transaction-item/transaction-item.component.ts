@@ -1,4 +1,5 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Transaction } from '../transaction-types';
 
 @Component({
   selector: 'app-transaction-item',
@@ -9,10 +10,10 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
     'class': 'transaction-item'
   }
 })
-export class TransactionItemComponent {
-  @Input() item: any;
-  date: any;
+export class TransactionItemComponent implements OnInit {
+  @Input() item!: Transaction;
+  date!: any;
   ngOnInit () {
-    this.date = this.item.date.toDate();
+    this.date = this.item?.date.toDate();
   }
 }

@@ -1,6 +1,7 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Category, TransactionType } from '../transaction-types';
 import { incomingsCategories } from './categories.const';
 import { expensesCategories } from './categories.const';
 
@@ -14,16 +15,16 @@ import { expensesCategories } from './categories.const';
   }
 })
 
-export class TransactionsDialogComponent {
-  date: any;
-  categories: any;
-  isIncomings: boolean = false;
-  isExpenses: boolean = false;
+export class TransactionsDialogComponent implements OnInit {
+  date!: string;
+  categories!: Category[];
+  isIncomings = false;
+  isExpenses = false;
   transactionFormGroup!: FormGroup;
-  isSubmitted: boolean = false;
-  selectedType: any;
+  isSubmitted = false;
+  selectedType!: TransactionType;
 
-  transactionTypes: any = [
+  transactionTypes: TransactionType[] = [
     { value: 'incoming', name: 'Incoming' },
     { value: 'expense', name: 'Expense' }
   ];
@@ -49,7 +50,7 @@ export class TransactionsDialogComponent {
 
     this.transactionFormGroup = this.fb.group({
       typeControl: this.fb.control(this.selectedType, Validators.required),
-      amountControl: this.fb.control('', [Validators.required, Validators.pattern(/^[1-9]\d*([\,\.]\d{2})?$/)]),
+      amountControl: this.fb.control('', [Validators.required, Validators.pattern(/^[1-9]\d*([,.]\d{2})?$/)]),
       dateControl: this.fb.control(new Date(), Validators.required),
       noteControl: this.fb.control(''),
       categories: this.fb.control('', Validators.required)
@@ -60,29 +61,29 @@ export class TransactionsDialogComponent {
     }
   }
 
-  onTypeChange(value: any) {
+  onTypeChange(value: TransactionType) {
     this.selectedType = value;
     value === (this.transactionTypes[0]) ? (this.categories = incomingsCategories) : (this.categories = expensesCategories);
   }
 
-  loadData(selectedType: any) {
+  loadData(selectedType: TransactionType) {
     if (selectedType) {
       this.transactionFormGroup.setValue({typeControl: selectedType, amountControl: this.data.sum, dateControl: this.data.date.toDate(), categories: this.categories[this.data.category.id], noteControl: this.data.note});
     }
   }
 
-  submit(form: any) {
+  submit() {
     this.isSubmitted = true;
-    if (form.valid) {
+    if (this.transactionFormGroup.valid) {
       if (!this.data) {
-        this.data = form
+        this.data = this.transactionFormGroup
       }
       else {
-        this.data.type = form.controls.typeControl.value;
-        this.data.sum = form.controls.amountControl.value;
-        this.data.date = form.controls.dateControl.value;
-        this.data.category = form.controls.categories.value;
-        this.data.note = form.controls.noteControl.value;
+        this.data.type = this.transactionFormGroup.controls['typeControl'].value;
+        this.data.sum = this.transactionFormGroup.controls['amountControl'].value;
+        this.data.date = this.transactionFormGroup.controls['dateControl'].value;
+        this.data.category = this.transactionFormGroup.controls['categories'].value;
+        this.data.note = this.transactionFormGroup.controls['noteControl'].value;
       }
       this.dialogRef.close(this.data);
     }
