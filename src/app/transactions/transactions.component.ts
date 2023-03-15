@@ -1,22 +1,21 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
-
+import { Transaction } from './transaction-types';
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'transactions'
+    class: 'transactions'
   }
 })
-export class TransactionsComponent {
-  public transactions: any;
+export class TransactionsComponent implements OnInit {
+  public transactions?: Transaction[];
   manageDialogRef!: MatDialogRef<TransactionsDialogComponent>;
-  addMode: boolean = false;
-  title: string = '';
+  title!: string;
 
   @Input() incomingsMode?: boolean = false;
   @Input() expensesMode?: boolean = false;
@@ -44,15 +43,15 @@ export class TransactionsComponent {
     });
   }
 
-  public deleteItem(item: any) {
+  public deleteItem(item: Transaction) {
     this._manageService.deleteTransaction(item.id);
   }
 
-  public addItem(item: any) {
+  public addItem(item: Transaction) {
     this._manageService.addTransaction(item);
   }
 
-  openDialog(item?: any, incomingsMode?: boolean, expensesMode?: boolean) {
+  openDialog(item?: Transaction, incomingsMode?: boolean, expensesMode?: boolean) {
     this.manageDialogRef = this.dialog.open(TransactionsDialogComponent, {
       data: {
         item,
@@ -69,7 +68,7 @@ export class TransactionsComponent {
     );
   }
 
-  openEditDialog(item: any) {
+  openEditDialog(item: Transaction) {
     this.manageDialogRef = this.dialog.open(TransactionsDialogComponent, {
       data: {
         item

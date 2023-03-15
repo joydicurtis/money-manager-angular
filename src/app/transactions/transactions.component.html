@@ -13,11 +13,10 @@
   </div>
 </ng-container>
 <div class="transactions__action">
-  <button color="primary" mat-fab (click)="openDialog(null, incomingsMode, expensesMode)" aria-label="Add">
+  <button color="primary" mat-fab (click)="openDialog(undefined, incomingsMode, expensesMode)" aria-label="Add">
     <mat-icon>add</mat-icon>
   </button>
 </div>
-
 <ng-template #emptyState>
   There are no items yet
 </ng-template>
