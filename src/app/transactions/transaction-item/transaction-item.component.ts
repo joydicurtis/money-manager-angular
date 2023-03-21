@@ -7,13 +7,13 @@ import { Transaction } from '../transaction-types';
   styleUrls: ['./transaction-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'transaction-item'
-  }
+    class: 'transaction-item',
+  },
 })
 export class TransactionItemComponent implements OnInit {
   @Input() item!: Transaction;
   date!: any;
-  ngOnInit () {
+  ngOnInit() {
     this.date = this.item?.date.toDate();
   }
 }

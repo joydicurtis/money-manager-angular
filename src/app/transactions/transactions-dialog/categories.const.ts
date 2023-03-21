@@ -1,12 +1,12 @@
 export const incomingsCategories = [
-  { id: 0, name: 'Salary', icon: 'work'},
-  { id: 1, name: 'Freelance', icon: 'computer'},
-  { id: 2, name: 'Investments', icon: 'savings'},
-  { id: 3, name: 'Dividents', icon: 'moving'},
-  { id: 4, name: 'Awards', icon: 'leaderboard'},
-  { id: 5, name: 'Rental', icon: 'real_estate_agent'},
-  { id: 6, name: 'Other', icon: 'payments'}
-]
+  { id: 0, name: 'Salary', icon: 'work' },
+  { id: 1, name: 'Freelance', icon: 'computer' },
+  { id: 2, name: 'Investments', icon: 'savings' },
+  { id: 3, name: 'Dividents', icon: 'moving' },
+  { id: 4, name: 'Awards', icon: 'leaderboard' },
+  { id: 5, name: 'Rental', icon: 'real_estate_agent' },
+  { id: 6, name: 'Other', icon: 'payments' },
+];
 
 export const expensesCategories = [
   { id: 0, name: 'Groceries', icon: 'local_grocery_store' },
@@ -15,23 +15,22 @@ export const expensesCategories = [
   { id: 3, name: 'Transport', icon: 'subway' },
   { id: 4, name: 'Auto', icon: 'directions_car' },
   { id: 5, name: 'Bills', icon: 'request_quote' },
-  { id: 6, name: 'Beauty', icon: 'spa'},
-  { id: 7, name: 'Books', icon: 'book'},
-  { id: 8, name: 'Childcare', icon: 'child_friendly'},
-  { id: 9, name: 'Clothing', icon: 'checkroom'},
-  { id: 10, name: 'Family', icon: 'family_restroom'},
-  { id: 11, name: 'Games', icon: 'sports_esports'},
-  { id: 12, name: 'Gifts', icon: 'card_giftcard'},
-  { id: 13, name: 'Home', icon: 'maps_home_work'},
-  { id: 14, name: 'Health', icon: 'volunteer_activism'},
-  { id: 15, name: 'Electronics', icon: 'electrical_services'},
-  { id: 16, name: 'Education', icon: 'school'},
-  { id: 17, name: 'Insurance', icon: 'verified_user'},
-  { id: 18, name: 'Mobile', icon: 'phone_iphone'},
-  { id: 19, name: 'Pets', icon: 'pets"'},
-  { id: 20, name: 'Sport', icon: 'fitness_center'},
-  { id: 21, name: 'Taxes', icon: 'account_balance'},
-  { id: 22, name: 'Vacation', icon: 'hiking'},
-  { id: 23, name: 'Other', icon: 'payments'}
-]
-
+  { id: 6, name: 'Beauty', icon: 'spa' },
+  { id: 7, name: 'Books', icon: 'book' },
+  { id: 8, name: 'Childcare', icon: 'child_friendly' },
+  { id: 9, name: 'Clothing', icon: 'checkroom' },
+  { id: 10, name: 'Family', icon: 'family_restroom' },
+  { id: 11, name: 'Games', icon: 'sports_esports' },
+  { id: 12, name: 'Gifts', icon: 'card_giftcard' },
+  { id: 13, name: 'Home', icon: 'maps_home_work' },
+  { id: 14, name: 'Health', icon: 'volunteer_activism' },
+  { id: 15, name: 'Electronics', icon: 'electrical_services' },
+  { id: 16, name: 'Education', icon: 'school' },
+  { id: 17, name: 'Insurance', icon: 'verified_user' },
+  { id: 18, name: 'Mobile', icon: 'phone_iphone' },
+  { id: 19, name: 'Pets', icon: 'pets"' },
+  { id: 20, name: 'Sport', icon: 'fitness_center' },
+  { id: 21, name: 'Taxes', icon: 'account_balance' },
+  { id: 22, name: 'Vacation', icon: 'hiking' },
+  { id: 23, name: 'Other', icon: 'payments' },
+];

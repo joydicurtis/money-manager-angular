@@ -1,26 +1,39 @@
 import { Injectable } from '@angular/core';
-import { deleteDoc, doc, orderBy, query, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  deleteDoc,
+  doc,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ManageService {
-
   constructor(private fs: Firestore) {}
 
   public addTransaction(item: any) {
     const current = new Date();
     const time = current.getTime();
     const itemid = doc(collection(this.fs, 'id')).id;
-    return setDoc(doc(this.fs, 'transactions', itemid), { id: itemid, type: item.value.typeControl, sum: Number(item.value.amountControl), date: item.value.dateControl, category: item.value.categories, note: item.value.noteControl, time: time });
+    return setDoc(doc(this.fs, 'transactions', itemid), {
+      id: itemid,
+      type: item.value.typeControl,
+      sum: Number(item.value.amountControl),
+      date: item.value.dateControl,
+      category: item.value.categories,
+      note: item.value.noteControl,
+      time: time,
+    });
   }
 
   public getTransactions(): Observable<any[]> {
     const incomingsRef = collection(this.fs, 'transactions');
     const q = query(incomingsRef, orderBy('time'));
-    return collectionData(q) as Observable<any[]>
+    return collectionData(q) as Observable<any[]>;
   }
 
   public async deleteTransaction(id: any) {

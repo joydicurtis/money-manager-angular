@@ -6,9 +6,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./tabs.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'tabs'
-  }
+    class: 'tabs',
+  },
 })
-export class TabsComponent {
-
-}
+export class TabsComponent {}
