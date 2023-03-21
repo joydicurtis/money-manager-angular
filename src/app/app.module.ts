@@ -7,14 +7,14 @@ import { ChartComponent } from './chart/chart.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { FirestoreModule } from '@angular/fire/firestore';
 import { ManageService } from './services/manage.service';
@@ -25,7 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionsDialogComponent } from './transactions/transactions-dialog/transactions-dialog.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TransactionItemComponent } from './transactions/transaction-item/transaction-item.component';
 
 @NgModule({
@@ -35,7 +35,7 @@ import { TransactionItemComponent } from './transactions/transaction-item/transa
     TabsComponent,
     TransactionsComponent,
     TransactionsDialogComponent,
-    TransactionItemComponent
+    TransactionItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,10 +60,8 @@ import { TransactionItemComponent } from './transactions/transaction-item/transa
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
-  exports: [
-    MatInputModule
-  ],
+  exports: [MatInputModule],
   providers: [ManageService, MatDatepickerModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

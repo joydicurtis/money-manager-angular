@@ -2,6 +2,7 @@
 @use "@angular/material" as mat;
 @use "typography" as typography;
 
+/* stylelint-disable */
 $my-app-primary: mat.define-palette(mat.$deep-purple-palette);
 $my-app-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
 $my-app-warn: mat.define-palette(mat.$red-palette);
@@ -13,6 +14,7 @@ $my-app-theme: mat.define-light-theme(
       accent: $my-app-accent,
       warn: $my-app-warn,
     ),
-    typography: typography.$my-app-typography
+    typography: typography.$my-app-typography,
   )
 );
+/* stylelint-enable */

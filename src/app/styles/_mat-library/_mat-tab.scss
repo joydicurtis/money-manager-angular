@@ -2,7 +2,9 @@
 @use "@angular/material" as mat;
 
 @mixin theme($theme, $typography-config) {
+  /* stylelint-disable */
   $color-config: mat.get-color-config($theme);
+  /* stylelint-enable */
   @if $color-config != null {
     @include color($theme);
   }

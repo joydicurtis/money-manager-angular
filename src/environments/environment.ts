@@ -7,4 +7,5 @@ export const environment = {
     authDomain: 'money-manager-21fd9.firebaseapp.com',
     messagingSenderId: '349110067386',
     measurementId: 'G-46VVKDFQ6M',
-  },}
+  },
+};

@@ -1,22 +1,43 @@
 <h1 class="transactions__title">{{ title }}</h1>
-<ng-container *ngIf="transactions && transactions.length>0; else emptyState">
-  <div class="transactions__item" [ngClass]="transaction.type.value === 'incoming' ? 'transactions__item--incoming' : 'transactions__item--expense'" *ngFor="let transaction of transactions">
+<ng-container *ngIf="transactions && transactions.length > 0; else emptyState">
+  <div
+    *ngFor="let transaction of transactions"
+    class="transactions__item"
+    [ngClass]="
+      transaction.type.value === 'incoming'
+        ? 'transactions__item--incoming'
+        : 'transactions__item--expense'
+    "
+  >
     <app-transaction-item [item]="transaction"></app-transaction-item>
     <div class="transactions__item-action">
-      <button mat-icon-button color="primary" aria-label="Edit" (click)="openEditDialog(transaction)">
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Edit"
+        (click)="openEditDialog(transaction)"
+      >
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteItem(transaction)">
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Delete"
+        (click)="deleteItem(transaction)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </div>
   </div>
 </ng-container>
 <div class="transactions__action">
-  <button color="primary" mat-fab (click)="openDialog(undefined, incomingsMode, expensesMode)" aria-label="Add">
+  <button
+    color="primary"
+    mat-fab
+    (click)="openDialog(undefined, incomingsMode, expensesMode)"
+    aria-label="Add"
+  >
     <mat-icon>add</mat-icon>
   </button>
 </div>
-<ng-template #emptyState>
-  There are no items yet
-</ng-template>
+<ng-template #emptyState> There are no items yet </ng-template>

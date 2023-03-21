@@ -2,17 +2,17 @@
 @use "theme" as theme;
 @use "../tabs/tabs.component.scss" as tabs;
 @use "../transactions/transactions.component" as transactions;
-@use "../transactions/transaction-item/transaction-item.component.scss" as transaction-item;
-@use "../transactions/transactions-dialog/transactions-dialog.component" as transaction-dialog;
+@use "../transactions/transaction-item/transaction-item.component.scss" as
+  transaction-item;
+@use "../transactions/transactions-dialog/transactions-dialog.component" as
+  transaction-dialog;
+@use "colors";
+@use "layout";
+@use "./_mat-library/mat-library";
+
 @include mat.core();
-
-@import './_mat-library/mat-library';
-
 @include mat.core-theme(theme.$my-app-theme);
 @include mat.button-theme(theme.$my-app-theme);
-
-@import 'colors';
-@import 'layout';
 
 @include tabs.theme(theme.$my-app-theme);
 @include transactions.theme(theme.$my-app-theme);

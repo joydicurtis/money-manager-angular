@@ -9,8 +9,8 @@ import { Transaction } from './transaction-types';
   styleUrls: ['./transactions.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'transactions'
-  }
+    class: 'transactions',
+  },
 })
 export class TransactionsComponent implements OnInit {
   public transactions?: Transaction[];
@@ -20,23 +20,28 @@ export class TransactionsComponent implements OnInit {
   @Input() incomingsMode?: boolean = false;
   @Input() expensesMode?: boolean = false;
 
-  constructor(private _manageService: ManageService, public dialog: MatDialog) {}
+  constructor(
+    private _manageService: ManageService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.getItems();
   }
 
   public getItems() {
-    this._manageService.getTransactions().subscribe(data => {
+    this._manageService.getTransactions().subscribe((data) => {
       if (this.incomingsMode) {
         this.title = 'Incomings';
-        this.transactions = data.filter(item => item.type.value === 'incoming');
-      }
-      else if (this.expensesMode) {
+        this.transactions = data.filter(
+          (item) => item.type.value === 'incoming'
+        );
+      } else if (this.expensesMode) {
         this.title = 'Expenses';
-        this.transactions = data.filter(item => item.type.value === 'expense');
-      }
-      else {
+        this.transactions = data.filter(
+          (item) => item.type.value === 'expense'
+        );
+      } else {
         this.title = 'All';
         this.transactions = data;
       }
@@ -51,35 +56,35 @@ export class TransactionsComponent implements OnInit {
     this._manageService.addTransaction(item);
   }
 
-  openDialog(item?: Transaction, incomingsMode?: boolean, expensesMode?: boolean) {
+  openDialog(
+    item?: Transaction,
+    incomingsMode?: boolean,
+    expensesMode?: boolean
+  ) {
     this.manageDialogRef = this.dialog.open(TransactionsDialogComponent, {
       data: {
         item,
         incomingsMode,
-        expensesMode
+        expensesMode,
+      },
+    });
+    this.manageDialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this._manageService.addTransaction(data);
       }
     });
-    this.manageDialogRef.afterClosed().subscribe(
-      data => {
-        if (data) {
-          this._manageService.addTransaction(data);
-        }
-      }
-    );
   }
 
   openEditDialog(item: Transaction) {
     this.manageDialogRef = this.dialog.open(TransactionsDialogComponent, {
       data: {
-        item
+        item,
+      },
+    });
+    this.manageDialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this._manageService.updateTransaction(data);
       }
     });
-    this.manageDialogRef.afterClosed().subscribe(
-      data => {
-        if (data) {
-          this._manageService.updateTransaction(data);
-        }
-      }
-    );
   }
 }
