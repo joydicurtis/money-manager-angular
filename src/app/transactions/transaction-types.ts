@@ -22,6 +22,6 @@ export interface TransactionType {
 
 export interface dialogData {
   item: Transaction;
-  isIncomings: boolean;
+  isIncomes: boolean;
   isExpenses: boolean;
 }

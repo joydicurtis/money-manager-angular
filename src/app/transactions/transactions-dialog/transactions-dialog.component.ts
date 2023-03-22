@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Category, TransactionType } from '../transaction-types';
-import { incomingsCategories } from './categories.const';
+import { incomesCategories } from './categories.const';
 import { expensesCategories } from './categories.const';
 
 @Component({
@@ -17,14 +17,14 @@ import { expensesCategories } from './categories.const';
 export class TransactionsDialogComponent implements OnInit {
   date!: string;
   categories!: Category[];
-  isIncomings = false;
+  isIncomes = false;
   isExpenses = false;
   transactionFormGroup!: FormGroup;
   isSubmitted = false;
   selectedType!: TransactionType;
 
   transactionTypes: TransactionType[] = [
-    { value: 'incoming', name: 'Incoming' },
+    { value: 'income', name: 'Income' },
     { value: 'expense', name: 'Expense' },
   ];
 
@@ -35,14 +35,14 @@ export class TransactionsDialogComponent implements OnInit {
   ) {
     this.dialogRef = dialogRef;
     this.data = data.item;
-    this.isIncomings = data.incomingsMode;
+    this.isIncomes = data.incomesMode;
     this.isExpenses = data.expensesMode;
   }
 
   ngOnInit() {
-    if (this.isIncomings) {
+    if (this.isIncomes) {
       this.onTypeChange(this.transactionTypes[0]);
-      this.categories = incomingsCategories;
+      this.categories = incomesCategories;
     }
     if (this.isExpenses) {
       this.onTypeChange(this.transactionTypes[1]);
@@ -72,7 +72,7 @@ export class TransactionsDialogComponent implements OnInit {
   onTypeChange(value: TransactionType) {
     this.selectedType = value;
     value === this.transactionTypes[0]
-      ? (this.categories = incomingsCategories)
+      ? (this.categories = incomesCategories)
       : (this.categories = expensesCategories);
   }
 

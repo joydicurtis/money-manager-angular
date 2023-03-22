@@ -1,4 +1,4 @@
-export const incomingsCategories = [
+export const incomesCategories = [
   { id: 0, name: 'Salary', icon: 'work' },
   { id: 1, name: 'Freelance', icon: 'computer' },
   { id: 2, name: 'Investments', icon: 'savings' },
