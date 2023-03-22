@@ -31,8 +31,8 @@ export class ManageService {
   }
 
   public getTransactions(): Observable<any[]> {
-    const incomingsRef = collection(this.fs, 'transactions');
-    const q = query(incomingsRef, orderBy('time'));
+    const incomesRef = collection(this.fs, 'transactions');
+    const q = query(incomesRef, orderBy('time'));
     return collectionData(q) as Observable<any[]>;
   }
 

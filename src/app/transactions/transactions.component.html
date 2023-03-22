@@ -4,8 +4,8 @@
     *ngFor="let transaction of transactions"
     class="transactions__item"
     [ngClass]="
-      transaction.type.value === 'incoming'
-        ? 'transactions__item--incoming'
+      transaction.type.value === 'income'
+        ? 'transactions__item--income'
         : 'transactions__item--expense'
     "
   >
@@ -34,7 +34,7 @@
   <button
     color="primary"
     mat-fab
-    (click)="openDialog(undefined, incomingsMode, expensesMode)"
+    (click)="openDialog(undefined, incomesMode, expensesMode)"
     aria-label="Add"
   >
     <mat-icon>add</mat-icon>

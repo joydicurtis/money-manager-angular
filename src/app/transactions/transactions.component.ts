@@ -17,7 +17,7 @@ export class TransactionsComponent implements OnInit {
   manageDialogRef!: MatDialogRef<TransactionsDialogComponent>;
   title!: string;
 
-  @Input() incomingsMode?: boolean = false;
+  @Input() incomesMode?: boolean = false;
   @Input() expensesMode?: boolean = false;
 
   constructor(
@@ -31,10 +31,10 @@ export class TransactionsComponent implements OnInit {
 
   public getItems() {
     this._manageService.getTransactions().subscribe((data) => {
-      if (this.incomingsMode) {
-        this.title = 'Incomings';
+      if (this.incomesMode) {
+        this.title = 'Incomes';
         this.transactions = data.filter(
-          (item) => item.type.value === 'incoming'
+          (item) => item.type.value === 'income'
         );
       } else if (this.expensesMode) {
         this.title = 'Expenses';
@@ -58,13 +58,13 @@ export class TransactionsComponent implements OnInit {
 
   openDialog(
     item?: Transaction,
-    incomingsMode?: boolean,
+    incomesMode?: boolean,
     expensesMode?: boolean
   ) {
     this.manageDialogRef = this.dialog.open(TransactionsDialogComponent, {
       data: {
         item,
-        incomingsMode,
+        incomesMode,
         expensesMode,
       },
     });
