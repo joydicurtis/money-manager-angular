@@ -9,13 +9,15 @@ import {
 } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { FormGroup } from '@angular/forms';
+import { Transaction } from '../transactions/transaction-types';
 @Injectable({
   providedIn: 'root',
 })
 export class ManageService {
   constructor(private fs: Firestore) {}
 
-  public addTransaction(item: any) {
+  public addTransaction(item: FormGroup) {
     const current = new Date();
     const time = current.getTime();
     const itemid = doc(collection(this.fs, 'id')).id;
@@ -30,18 +32,18 @@ export class ManageService {
     });
   }
 
-  public getTransactions(): Observable<any[]> {
+  public getTransactions(): Observable<Transaction[]> {
     const incomesRef = collection(this.fs, 'transactions');
     const q = query(incomesRef, orderBy('time'));
-    return collectionData(q) as Observable<any[]>;
+    return collectionData(q) as Observable<Transaction[]>;
   }
 
-  public async deleteTransaction(id: any) {
+  public async deleteTransaction(id: string) {
     const docRef = doc(this.fs, `transactions/${id}`);
     await deleteDoc(docRef);
   }
 
-  public updateTransaction(item: any) {
+  public updateTransaction(item: Transaction) {
     if (item) {
       const docRef = doc(this.fs, 'transactions', item.id);
       updateDoc(docRef, item);

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Category, TransactionType } from '../transaction-types';
+import { Category, dialogData, Transaction, TransactionType } from '../transaction-types';
 import { incomesCategories } from './categories.const';
 import { expensesCategories } from './categories.const';
 
@@ -17,8 +17,9 @@ import { expensesCategories } from './categories.const';
 export class TransactionsDialogComponent implements OnInit {
   date!: string;
   categories!: Category[];
-  isIncomes = false;
-  isExpenses = false;
+  isIncomes?: boolean = false;
+  isExpenses?: boolean = false;
+  data: Transaction;
   transactionFormGroup!: FormGroup;
   isSubmitted = false;
   selectedType!: TransactionType;
@@ -31,12 +32,12 @@ export class TransactionsDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<TransactionsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public dialogData: dialogData
   ) {
     this.dialogRef = dialogRef;
-    this.data = data.item;
-    this.isIncomes = data.incomesMode;
-    this.isExpenses = data.expensesMode;
+    this.data = dialogData.item;
+    this.isIncomes = dialogData.incomesMode;
+    this.isExpenses = dialogData.expensesMode;
   }
 
   ngOnInit() {
@@ -90,10 +91,9 @@ export class TransactionsDialogComponent implements OnInit {
 
   submit() {
     this.isSubmitted = true;
+    let dataFromForm: FormGroup;
     if (this.transactionFormGroup.valid) {
-      if (!this.data) {
-        this.data = this.transactionFormGroup;
-      } else {
+      if (this.data) {
         this.data.type =
           this.transactionFormGroup.controls['typeControl'].value;
         this.data.sum =
@@ -105,7 +105,7 @@ export class TransactionsDialogComponent implements OnInit {
         this.data.note =
           this.transactionFormGroup.controls['noteControl'].value;
       }
-      this.dialogRef.close(this.data);
+      this.dialogRef.close(this.data ? this.data : this.transactionFormGroup);
     }
   }
 

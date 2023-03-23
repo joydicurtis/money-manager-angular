@@ -1,6 +1,6 @@
 import { Timestamp } from 'firebase/firestore';
 
-export interface Transaction {
+export type Transaction = {
   id: string;
   type: TransactionType;
   date: Timestamp;
@@ -9,19 +9,24 @@ export interface Transaction {
   note: string;
 }
 
-export interface Category {
+export type Category = {
   id: number;
   name: string;
   icon: string;
 }
 
-export interface TransactionType {
+export type TransactionType = {
   value: string;
   name: string;
 }
 
-export interface dialogData {
+export type dialogData = {
   item: Transaction;
-  isIncomes: boolean;
-  isExpenses: boolean;
+  expensesMode?: boolean;
+  incomesMode?: boolean;
+}
+
+export type TransactionGroup = {
+  key: string;
+  data: Transaction[];
 }

@@ -13,37 +13,50 @@
   /* stylelint-enable */
 
   .transaction-item {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
     width: 100%;
-    padding: 8px 0;
+    margin-bottom: 4px;
+    padding: 16px;
+    border-radius: 8px;
 
-    &__note {
-      @include mat.typography-level($typography, "caption");
+    &--income {
+      background-color: rgba(56, 142, 60, 0.1);
+    }
 
-      color: #757575;
+    &--expense {
+      background-color: rgba(211, 47, 47, 0.1);
+    }
+
+    &__description {
+      width: 100%;
     }
 
     &__info {
       display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
       gap: 8px;
       justify-content: space-between;
-      margin-bottom: 8px;
     }
 
-    &__category {
-      @include mat.typography-level($typography, "body-2");
-
-      margin-bottom: 4px;
-    }
-
-    &__date {
+    &__note {
       @include mat.typography-level($typography, "caption");
-
       color: #757575;
+      margin-top: 8px;
     }
 
     &__sum {
-      @include mat.typography-level($typography, "subtitle-1");
+      @include mat.typography-level($typography, "body-2");
+      text-align: right;
+      flex-grow: 1;
+    }
+
+    &__actions {
+      flex-shrink: 0;
     }
   }
 }
