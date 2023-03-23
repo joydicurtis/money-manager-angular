@@ -1,33 +1,13 @@
 <h1 class="transactions__title">{{ title }}</h1>
 <ng-container *ngIf="transactions && transactions.length > 0; else emptyState">
   <div
-    *ngFor="let transaction of transactions"
+    *ngFor="let transaction of transactions | groupByDate"
     class="transactions__item"
-    [ngClass]="
-      transaction.type.value === 'income'
-        ? 'transactions__item--income'
-        : 'transactions__item--expense'
-    "
   >
-    <app-transaction-item [item]="transaction"></app-transaction-item>
-    <div class="transactions__item-action">
-      <button
-        mat-icon-button
-        color="primary"
-        aria-label="Edit"
-        (click)="openEditDialog(transaction)"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        color="warn"
-        aria-label="Delete"
-        (click)="deleteItem(transaction)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
+    <p>
+      <strong>{{transaction.key}}</strong>
+    </p>
+    <app-transaction-item *ngFor="let item of transaction.data" [item]="item" (onDeleteEvent)="deleteItem($event)" (onEditEvent)="openEditDialog($event)"></app-transaction-item>
   </div>
 </ng-container>
 <div class="transactions__action">

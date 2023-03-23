@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@import "../styles/colors";
 
 @mixin theme($theme) {
   /* stylelint-disable */
@@ -22,27 +21,6 @@
       @include mat.typography-level($typography, "headline-1");
 
       margin: 0 0 16px;
-    }
-
-    &__item {
-      display: flex;
-      gap: 8px;
-      justify-content: space-between;
-      margin-bottom: 4px;
-      padding: 0 0 0 16px;
-      border-radius: 8px;
-    }
-
-    &__item--income {
-      background-color: rgba(56, 142, 60, 0.1);
-    }
-
-    &__item--expense {
-      background-color: $color-warn;
-    }
-
-    &__item-action {
-      flex-shrink: 0;
     }
 
     &__action {

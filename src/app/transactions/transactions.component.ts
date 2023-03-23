@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
 import { Transaction } from './transaction-types';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
@@ -52,7 +53,7 @@ export class TransactionsComponent implements OnInit {
     this._manageService.deleteTransaction(item.id);
   }
 
-  public addItem(item: Transaction) {
+  public addItem(item: FormGroup) {
     this._manageService.addTransaction(item);
   }
 

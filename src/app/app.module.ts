@@ -27,6 +27,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionsDialogComponent } from './transactions/transactions-dialog/transactions-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TransactionItemComponent } from './transactions/transaction-item/transaction-item.component';
+import { GroupByDatePipe } from './pipes/group-by-date.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TransactionItemComponent } from './transactions/transaction-item/transa
     TransactionsComponent,
     TransactionsDialogComponent,
     TransactionItemComponent,
+    GroupByDatePipe,
   ],
   imports: [
     BrowserModule,
