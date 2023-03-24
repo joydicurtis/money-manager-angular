@@ -30,6 +30,11 @@
       background-color: rgba(211, 47, 47, 0.1);
     }
 
+    &--focused {
+      outline-offset: 2px;
+      outline: solid 2px #FFA000;
+    }
+
     &__description {
       width: 100%;
     }
@@ -56,7 +61,11 @@
     }
 
     &__actions {
+      display: none;
       flex-shrink: 0;
+      .transaction-item--focused &{
+        display: block;
+      }
     }
   }
 }

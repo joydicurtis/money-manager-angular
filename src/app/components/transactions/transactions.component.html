@@ -7,7 +7,7 @@
     <p>
       <strong>{{transaction.key}}</strong>
     </p>
-    <app-transaction-item *ngFor="let item of transaction.data" [item]="item" (onDeleteEvent)="deleteItem($event)" (onEditEvent)="openEditDialog($event)"></app-transaction-item>
+    <app-transaction-item *ngFor="let item of transaction.data" show-on-focus tabindex="1" [item]="item" (onDeleteEvent)="deleteItem($event)" (onEditEvent)="openEditDialog($event)"></app-transaction-item>
   </div>
 </ng-container>
 <div class="transactions__action">
