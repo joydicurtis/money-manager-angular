@@ -28,6 +28,7 @@ import { TransactionsDialogComponent } from './components/transactions/transacti
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TransactionItemComponent } from './components/transactions/transaction-item/transaction-item.component';
 import { GroupByDatePipe } from './pipes/group-by-date.pipe';
+import { ShowOnFocusDirective } from './directives/show-on-focus.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { GroupByDatePipe } from './pipes/group-by-date.pipe';
     TransactionsDialogComponent,
     TransactionItemComponent,
     GroupByDatePipe,
+    ShowOnFocusDirective,
   ],
   imports: [
     BrowserModule,
