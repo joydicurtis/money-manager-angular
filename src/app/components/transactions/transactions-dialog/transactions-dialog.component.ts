@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Logger } from 'src/app/decorators/logger.decorator';
 import { Category, dialogData, Transaction, TransactionType } from '../transaction-types';
 import { incomesCategories } from './categories.const';
 import { expensesCategories } from './categories.const';
@@ -14,6 +15,7 @@ import { expensesCategories } from './categories.const';
     class: 'transaction-dialog',
   },
 })
+
 export class TransactionsDialogComponent implements OnInit {
   date!: string;
   categories!: Category[];
@@ -89,9 +91,9 @@ export class TransactionsDialogComponent implements OnInit {
     }
   }
 
+  @Logger
   submit() {
     this.isSubmitted = true;
-    let dataFromForm: FormGroup;
     if (this.transactionFormGroup.valid) {
       if (this.data) {
         this.data.type =
@@ -109,6 +111,7 @@ export class TransactionsDialogComponent implements OnInit {
     }
   }
 
+  @Logger
   close() {
     this.dialogRef.close();
   }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Logger } from 'src/app/decorators/logger.decorator';
 import { Transaction } from '../transaction-types';
 
 @Component({
@@ -10,6 +11,7 @@ import { Transaction } from '../transaction-types';
     class: 'transaction-item',
   },
 })
+
 export class TransactionItemComponent implements OnInit {
   @Input() item!: Transaction;
   @Output() onDeleteEvent = new EventEmitter<Transaction>();
@@ -24,6 +26,7 @@ export class TransactionItemComponent implements OnInit {
   deleteItem(value: Transaction) {
     this.onDeleteEvent.emit(value);
   }
+
   editItem(value: Transaction) {
     this.onEditEvent.emit(value);
   }

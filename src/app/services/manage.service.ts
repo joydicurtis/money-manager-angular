@@ -10,7 +10,7 @@ import {
 import { Observable } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
-import { Transaction } from '../transactions/transaction-types';
+import { Transaction } from '../components/transactions/transaction-types';
 @Injectable({
   providedIn: 'root',
 })

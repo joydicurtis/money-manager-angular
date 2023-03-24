@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ManageService } from '../services/manage.service';
+import { ManageService } from '../../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
 import { Transaction } from './transaction-types';
 import { FormGroup } from '@angular/forms';
+import { Logger } from 'src/app/decorators/logger.decorator';
+
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
@@ -13,6 +15,7 @@ import { FormGroup } from '@angular/forms';
     class: 'transactions',
   },
 })
+
 export class TransactionsComponent implements OnInit {
   public transactions?: Transaction[];
   manageDialogRef!: MatDialogRef<TransactionsDialogComponent>;
@@ -30,7 +33,8 @@ export class TransactionsComponent implements OnInit {
     this.getItems();
   }
 
-  public getItems() {
+  @Logger
+  protected getItems() {
     this._manageService.getTransactions().subscribe((data) => {
       if (this.incomesMode) {
         this.title = 'Incomes';
@@ -49,15 +53,13 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  public deleteItem(item: Transaction) {
+  @Logger
+  protected deleteItem(item: Transaction) {
     this._manageService.deleteTransaction(item.id);
   }
 
-  public addItem(item: FormGroup) {
-    this._manageService.addTransaction(item);
-  }
-
-  openDialog(
+  @Logger
+  protected openDialog(
     item?: Transaction,
     incomesMode?: boolean,
     expensesMode?: boolean
@@ -76,7 +78,8 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  openEditDialog(item: Transaction) {
+  @Logger
+  protected openEditDialog(item: Transaction) {
     this.manageDialogRef = this.dialog.open(TransactionsDialogComponent, {
       data: {
         item,

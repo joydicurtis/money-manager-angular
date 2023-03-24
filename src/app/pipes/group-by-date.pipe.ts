@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Transaction, TransactionGroup } from '../transactions/transaction-types';
+import { Transaction, TransactionGroup } from '../components/transactions/transaction-types';
 
 @Pipe({
   name: 'groupByDate'
