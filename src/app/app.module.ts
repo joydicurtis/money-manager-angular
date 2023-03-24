@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChartComponent } from './chart/chart.component';
-import { TabsComponent } from './tabs/tabs.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -23,10 +23,10 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { TransactionsComponent } from './transactions/transactions.component';
-import { TransactionsDialogComponent } from './transactions/transactions-dialog/transactions-dialog.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { TransactionsDialogComponent } from './components/transactions/transactions-dialog/transactions-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { TransactionItemComponent } from './transactions/transaction-item/transaction-item.component';
+import { TransactionItemComponent } from './components/transactions/transaction-item/transaction-item.component';
 import { GroupByDatePipe } from './pipes/group-by-date.pipe';
 
 @NgModule({

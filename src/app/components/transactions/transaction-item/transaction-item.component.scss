@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "../../styles/colors";
+@use "../../../styles/colors";
 
 @mixin theme($theme) {
   /* stylelint-disable */

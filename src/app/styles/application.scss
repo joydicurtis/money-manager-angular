@@ -1,14 +1,15 @@
 @use "@angular/material" as mat;
 @use "theme" as theme;
-@use "../tabs/tabs.component.scss" as tabs;
-@use "../transactions/transactions.component" as transactions;
-@use "../transactions/transaction-item/transaction-item.component.scss" as
+@use "./_mat-library/mat-library";
+@use "../components/tabs/tabs.component" as tabs;
+@use "../components/transactions/transactions.component" as transactions;
+@use "../components/transactions/transaction-item/transaction-item.component.scss" as
   transaction-item;
-@use "../transactions/transactions-dialog/transactions-dialog.component" as
+@use "../components/transactions/transactions-dialog/transactions-dialog.component" as
   transaction-dialog;
 @use "colors";
 @use "layout";
-@use "./_mat-library/mat-library";
+
 
 @include mat.core();
 @include mat.core-theme(theme.$my-app-theme);

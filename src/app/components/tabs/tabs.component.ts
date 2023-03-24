@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Logger } from 'src/app/decorators/logger.decorator';
 
 @Component({
   selector: 'app-tabs',
@@ -9,4 +10,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
     class: 'tabs',
   },
 })
+
 export class TabsComponent {}
