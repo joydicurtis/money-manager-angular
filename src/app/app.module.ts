@@ -17,7 +17,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { FirestoreModule } from '@angular/fire/firestore';
-import { ManageService } from './services/manage.service';
 import { CommonModule } from '@angular/common';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -65,7 +64,7 @@ import { ShowOnFocusDirective } from './directives/show-on-focus.directive';
     provideFirestore(() => getFirestore()),
   ],
   exports: [MatInputModule],
-  providers: [ManageService, MatDatepickerModule],
+  providers: [MatDatepickerModule, { provide: 'ApiURL', useValue: 'some-url', multi: true }, { provide: 'ApiURL', useValue: 'some-url1', multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

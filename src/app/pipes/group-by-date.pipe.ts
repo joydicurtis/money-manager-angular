@@ -6,20 +6,18 @@ import { Transaction, TransactionGroup } from '../components/transactions/transa
 })
 export class GroupByDatePipe implements PipeTransform {
 transform(value: Transaction[] = []): TransactionGroup[] {
-    if(value) {
-      const grouppedData = value.reduce((prev: any, cur: any)=> {
-        if(!prev[cur['date'].toDate().toLocaleDateString() as keyof Transaction]) {
-            prev[cur['date'].toDate().toLocaleDateString()] = [cur];
-        } else {
-            prev[cur['date'].toDate().toLocaleDateString()].push(cur);
-        }
-        return prev;
-      }, {});
-      return Object.keys(grouppedData).map(key => ({ key, data: grouppedData[key] }));
-    }
-    else {
+    if(!value) {
       return [];
     }
+    const grouppedData = value.reduce((prev: any, cur: any)=> {
+      if (!prev[cur['date'].toDate().toLocaleDateString() as keyof Transaction]) {
+          prev[cur['date'].toDate().toLocaleDateString()] = [cur];
+      } else {
+          prev[cur['date'].toDate().toLocaleDateString()].push(cur);
+      }
+      return prev;
+    }, {});
+    return Object.keys(grouppedData).map(key => ({ key, data: grouppedData[key] }));
   }
 
 }

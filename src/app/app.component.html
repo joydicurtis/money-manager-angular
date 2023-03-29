@@ -1,4 +1,13 @@
 <div class="container money-manager-theme">
   <!-- <app-chart></app-chart> -->
-  <app-tabs></app-tabs>
+  <mat-tab-group class="tabs" mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab *ngFor="let tab of tabsContent" [label]="tab.label">
+      <app-tabs>
+        <app-transactions
+          [incomesMode]="tab.incomesMode"
+          [expensesMode]="tab.expensesMode"
+        ></app-transactions>
+      </app-tabs>
+    </mat-tab>
+  </mat-tab-group>
 </div>

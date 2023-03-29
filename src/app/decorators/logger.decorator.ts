@@ -55,5 +55,4 @@ export function Logger(target: Object, propertyKey: string, descriptor: Property
     console.log('');
     return result;
   }
-
 }
