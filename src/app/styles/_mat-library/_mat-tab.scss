@@ -1,15 +1,42 @@
 @use "sass:map";
 @use "@angular/material" as mat;
+@use "../../styles/colors";
 
-@mixin theme($theme, $typography-config) {
+@mixin theme($theme) {
   /* stylelint-disable */
-  $color-config: mat.get-color-config($theme);
+  $typography: mat.get-typography-config($theme);
+  $colors: map.get($theme, color);
+  $primary: map.get($colors, primary);
+  $caution: map.get($colors, caution);
+  $dark: map.get($colors, dark);
+  $danger: map.get($colors, danger);
   /* stylelint-enable */
-  @if $color-config != null {
-    @include color($theme);
-  }
 
-  @if $typography-config != null {
-    @include typography($typography-config);
+  .tabs {
+    position: relative;
+    display: block;
+    height: 100%;
+    min-height: 100vh;
+    padding: 8px 0;
+
+    /* stylelint-disable */
+    .mat-mdc-tab-group {
+      .mdc-tab {
+        @include mat.typography-level($typography, "body-2");
+
+        &--active {
+          background-color: white;
+          border-radius: 8px 8px 0 0;
+        }
+      }
+    }
+    /* stylelint-enable */
+
+    .mat-mdc-tab-body {
+      min-height: calc(100vh - 80px);
+      background-color: #fff;
+      border-radius: 0 0 8px 8px;
+    }
   }
 }
+

@@ -61,7 +61,6 @@
     }
 
     &__actions {
-      display: none;
       flex-shrink: 0;
       .transaction-item--focused &{
         display: block;

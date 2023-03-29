@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Logger } from 'src/app/decorators/logger.decorator';
 import { Category, dialogData, Transaction, TransactionType } from '../transaction-types';
 import { incomesCategories } from './categories.const';
 import { expensesCategories } from './categories.const';
@@ -47,7 +46,7 @@ export class TransactionsDialogComponent implements OnInit {
       this.onTypeChange(this.transactionTypes[0]);
       this.categories = incomesCategories;
     }
-    if (this.isExpenses) {
+    else if (this.isExpenses) {
       this.onTypeChange(this.transactionTypes[1]);
       this.categories = expensesCategories;
     }
@@ -91,27 +90,23 @@ export class TransactionsDialogComponent implements OnInit {
     }
   }
 
-  @Logger
   submit() {
     this.isSubmitted = true;
     if (this.transactionFormGroup.valid) {
-      if (this.data) {
-        this.data.type =
-          this.transactionFormGroup.controls['typeControl'].value;
-        this.data.sum =
-          this.transactionFormGroup.controls['amountControl'].value;
-        this.data.date =
-          this.transactionFormGroup.controls['dateControl'].value;
-        this.data.category =
-          this.transactionFormGroup.controls['categories'].value;
-        this.data.note =
-          this.transactionFormGroup.controls['noteControl'].value;
-      }
-      this.dialogRef.close(this.data ? this.data : this.transactionFormGroup);
+      this.dialogRef.close(this.data ? this.collectedData(this.data) : this.transactionFormGroup);
     }
   }
 
-  @Logger
+  protected collectedData(data: Transaction) {
+    data.type = this.transactionFormGroup.controls['typeControl'].value;
+    data.sum = this.transactionFormGroup.controls['amountControl'].value;
+    data.date = this.transactionFormGroup.controls['dateControl'].value;
+    data.category = this.transactionFormGroup.controls['categories'].value;
+    data.note = this.transactionFormGroup.controls['noteControl'].value;
+    console.log('data', data);
+    return data;
+  }
+
   close() {
     this.dialogRef.close();
   }

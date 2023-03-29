@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
 @use "theme" as theme;
 @use "./_mat-library/mat-library";
-@use "../components/tabs/tabs.component" as tabs;
+@use "./_mat-library/mat-tab" as tabs;
 @use "../components/transactions/transactions.component" as transactions;
 @use "../components/transactions/transaction-item/transaction-item.component.scss" as
   transaction-item;

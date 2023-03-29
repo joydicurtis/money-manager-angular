@@ -3,7 +3,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
 import { Transaction } from './transaction-types';
-import { FormGroup } from '@angular/forms';
 import { Logger } from 'src/app/decorators/logger.decorator';
 
 @Component({
