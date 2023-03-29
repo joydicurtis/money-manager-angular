@@ -5,7 +5,7 @@
   "printWidth": 100,
   "overrides": [
     {
-      "files": "*.html",
+      "files": "*.html, *.js, *.scss",
       "options": {
         "parser": "angular",
         "printWidth": 80
