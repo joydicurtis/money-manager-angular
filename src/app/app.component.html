@@ -1,6 +1,25 @@
 <div class="container money-manager-theme">
   <!-- <app-chart></app-chart> -->
-  <mat-tab-group class="tabs" mat-stretch-tabs="false" mat-align-tabs="start"><mat-tab *ngFor="let tab of tabsContent" [label]="tab.label">
+  <div class="currency-data">
+    <div>
+      {{ currentDateRate * 1000 | date }}
+    </div>
+    <div>
+      ₴:
+      {{ usdUahRate }}
+    </div>
+    <div>
+      €:
+      {{ usdEurRate }}
+    </div>
+    <div>
+      £:
+      {{ usdGbpRate }}
+    </div>
+  </div>
+
+  <mat-tab-group class="tabs" mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab *ngFor="let tab of tabsContent" [label]="tab.label">
       <app-tabs>
         <app-transactions
           [incomesMode]="tab.incomesMode"

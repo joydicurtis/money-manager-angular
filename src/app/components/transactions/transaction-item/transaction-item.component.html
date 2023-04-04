@@ -2,7 +2,7 @@
   <div class="transaction-item__info">
     <div class="transaction-item__category">{{ item.category.name }}</div>
     <div class="transaction-item__sum">
-      {{ item.sum }}
+      {{ item.sum | currency }}
     </div>
   </div>
   <div *ngIf="item.note" class="transaction-item__note">
@@ -10,20 +10,10 @@
   </div>
 </div>
 <div class="transaction-item__actions">
-  <button
-    mat-icon-button
-    color="primary"
-    aria-label="Edit"
-    (click)="editItem(item)"
-  >
+  <button mat-icon-button color="primary" aria-label="Edit" (click)="editItem(item)">
     <mat-icon>edit</mat-icon>
   </button>
-  <button
-    mat-icon-button
-    color="warn"
-    aria-label="Delete"
-    (click)="deleteItem(item)"
-  >
+  <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteItem(item)">
     <mat-icon>delete</mat-icon>
   </button>
 </div>

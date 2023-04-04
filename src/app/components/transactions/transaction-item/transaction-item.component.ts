@@ -1,5 +1,4 @@
 import { Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Logger } from 'src/app/decorators/logger.decorator';
 import { Transaction } from '../transaction-types';
 
 @Component({
@@ -16,8 +15,8 @@ export class TransactionItemComponent implements OnInit {
   @Input() item!: Transaction;
   @Output() onDeleteEvent = new EventEmitter<Transaction>();
   @Output() onEditEvent = new EventEmitter<Transaction>();
-  @HostBinding('class.transaction-item--income') isIncome: boolean = false;
-  @HostBinding('class.transaction-item--expense') isExpense: boolean = false;
+  @HostBinding('class.transaction-item--income') isIncome = false;
+  @HostBinding('class.transaction-item--expense') isExpense = false;
 
   ngOnInit() {
     (this.item.type.value === 'income') ? this.isIncome = true : this.isExpense = true;
