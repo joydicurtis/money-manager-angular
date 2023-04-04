@@ -30,3 +30,19 @@ export type TransactionGroup = {
   key: string;
   data: Transaction[];
 }
+
+export type Rates = {
+  [currency: string]: number;
+}
+
+export type CurrencyData = {
+  base_code: string;
+  conversion_rates: Rates;
+  documentation: string;
+  result: string;
+  terms_of_use: string;
+  time_last_update_unix: Timestamp;
+  time_last_update_utc: string;
+  time_next_update_unix: Timestamp;
+  time_next_update_utc: string
+}

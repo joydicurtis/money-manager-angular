@@ -39,3 +39,9 @@ app-root {
 .cdk-overlay-pane {
   max-width: 30rem !important;
 }
+
+.currency-data {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+}

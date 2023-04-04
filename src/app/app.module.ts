@@ -28,6 +28,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TransactionItemComponent } from './components/transactions/transaction-item/transaction-item.component';
 import { GroupByDatePipe } from './pipes/group-by-date.pipe';
 import { ShowOnFocusDirective } from './directives/show-on-focus.directive';
+import { CurrencyPipe } from './pipes/currency.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ShowOnFocusDirective } from './directives/show-on-focus.directive';
     TransactionItemComponent,
     GroupByDatePipe,
     ShowOnFocusDirective,
+    CurrencyPipe,
   ],
   imports: [
     BrowserModule,

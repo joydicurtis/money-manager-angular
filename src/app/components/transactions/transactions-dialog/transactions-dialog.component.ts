@@ -103,7 +103,6 @@ export class TransactionsDialogComponent implements OnInit {
     data.date = this.transactionFormGroup.controls['dateControl'].value;
     data.category = this.transactionFormGroup.controls['categories'].value;
     data.note = this.transactionFormGroup.controls['noteControl'].value;
-    console.log('data', data);
     return data;
   }
 
