@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Timestamp } from 'firebase/firestore';
+import { CurrencyData } from './components/transactions/transaction-types';
 import { CurrencyService } from './services/currency.service';
 @Component({
   selector: 'app-root',
@@ -23,12 +23,17 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const currencyRateData = await this.currencyService.getCurrencyRate();
-    if (currencyRateData) {
-      this.usdUahRate = currencyRateData.conversion_rates['UAH'];
-      this.usdEurRate = currencyRateData.conversion_rates['EUR'];
-      this.usdGbpRate = currencyRateData.conversion_rates['GBP'];
-      this.currentDateRate = currencyRateData.time_last_update_unix;
-    }
+    this.currencyService.getCurrencyRate().subscribe(
+      (response: CurrencyData) => {
+        this.usdUahRate = response.conversion_rates['UAH'];
+        this.usdEurRate = response.conversion_rates['EUR'];
+        this.usdGbpRate = response.conversion_rates['GBP'];
+        this.currentDateRate = response.time_last_update_unix;
+        console.log(typeof(this.currentDateRate));
+      },
+      (error: Error) => {
+        console.log('error', error);
+      }
+    )
   }
 }

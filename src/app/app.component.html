@@ -20,12 +20,10 @@
 
   <mat-tab-group class="tabs" mat-stretch-tabs="false" mat-align-tabs="start">
     <mat-tab *ngFor="let tab of tabsContent" [label]="tab.label">
-      <app-tabs>
-        <app-transactions
-          [incomesMode]="tab.incomesMode"
-          [expensesMode]="tab.expensesMode"
-        ></app-transactions>
-      </app-tabs>
+      <app-transactions
+        [incomesMode]="tab.incomesMode"
+        [expensesMode]="tab.expensesMode"
+      ></app-transactions>
     </mat-tab>
   </mat-tab-group>
 </div>
