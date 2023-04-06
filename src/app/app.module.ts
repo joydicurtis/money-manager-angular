@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './components/chart/chart.component';
-import { TabsComponent } from './components/tabs/tabs.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -34,7 +33,6 @@ import { CurrencyPipe } from './pipes/currency.pipe';
   declarations: [
     AppComponent,
     ChartComponent,
-    TabsComponent,
     TransactionsComponent,
     TransactionsDialogComponent,
     TransactionItemComponent,
