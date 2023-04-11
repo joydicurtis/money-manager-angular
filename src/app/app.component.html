@@ -1,20 +1,21 @@
 <div class="container money-manager-theme">
   <!-- <app-chart></app-chart> -->
   <div class="currency-data">
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select [(value)]="selectedCurrency" (selectionChange)="currencyChange(selectedCurrency)">
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+          {{ currency.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div>
       {{ currentDateRate * 1000 | date }}
     </div>
-    <div>
-      ₴:
-      {{ usdUahRate }}
-    </div>
-    <div>
-      €:
-      {{ usdEurRate }}
-    </div>
-    <div>
-      £:
-      {{ usdGbpRate }}
+    <div *ngFor="let currency of currencyRes">
+      {{ currency.symbol }}
+      :
+      {{ currency.amount }}
     </div>
   </div>
 

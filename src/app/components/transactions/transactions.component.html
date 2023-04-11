@@ -1,9 +1,12 @@
 <h1 class="transactions__title">{{ title }}</h1>
+<div>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput type="text" #searchControl />
+  </mat-form-field>
+</div>
 <ng-container *ngIf="transactions && transactions.length > 0; else emptyState">
-  <div
-    *ngFor="let transaction of transactions | groupByDate"
-    class="transactions__item"
-  >
+  <div *ngFor="let transaction of transactions | groupByDate" class="transactions__item">
     <p>
       <strong>{{ transaction.key }}</strong>
     </p>

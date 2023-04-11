@@ -46,3 +46,9 @@ export type CurrencyData = {
   time_next_update_unix: Timestamp;
   time_next_update_utc: string
 }
+
+export type CurrencyRate = {
+  name: string;
+  symbol: string;
+  amount?: number;
+}

@@ -28,6 +28,7 @@ import { TransactionItemComponent } from './components/transactions/transaction-
 import { GroupByDatePipe } from './pipes/group-by-date.pipe';
 import { ShowOnFocusDirective } from './directives/show-on-focus.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CurrencyPipe } from './pipes/currency.pipe';
     MatRadioModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatSelectModule,
     AppRoutingModule,
     BrowserModule,
     CommonModule,
