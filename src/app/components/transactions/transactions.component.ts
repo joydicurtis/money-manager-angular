@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
 import { Transaction } from './transaction-types';
 import { Logger } from 'src/app/decorators/logger.decorator';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-transactions',
@@ -16,23 +17,30 @@ import { Logger } from 'src/app/decorators/logger.decorator';
 })
 
 export class TransactionsComponent implements OnInit {
-  public transactions?: Transaction[];
+  public transactions?: any;
   manageDialogRef!: MatDialogRef<TransactionsDialogComponent>;
   title!: string;
-
+  @ViewChild('searchControl', { static: true }) searchControl!: ElementRef;
   @Input() incomesMode?: boolean = false;
   @Input() expensesMode?: boolean = false;
 
   constructor(
     private _manageService: ManageService,
     public dialog: MatDialog
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getItems();
+    const s = fromEvent(this.searchControl.nativeElement, 'input');
+    s.subscribe((input: any) => {
+      if (input.target.value === '') {
+        this.getItems();
+      }
+      this.transactions = this.transactions.filter((item: Transaction) => item.category.name.toLowerCase().includes((input.target.value.toLowerCase())));
+    });
   }
 
-  @Logger
   protected getItems() {
     this._manageService.getTransactions().subscribe((data) => {
       if (this.incomesMode) {
