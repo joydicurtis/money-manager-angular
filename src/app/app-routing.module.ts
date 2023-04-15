@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './components/home/home.component';
+import { HttpTestComponent } from './components/http-test/http-test.component';
+import { RouterModule } from '@angular/router'
 
-const routes: Routes = [];
+const routes = [
+  { path: '', component: HomeComponent },
+  { path: 'converter', loadChildren: () => import('./converter/converter.module').then(mod => mod.ConverterModule) },
+  { path: 'http-test', component: HttpTestComponent }
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes),
+  ],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

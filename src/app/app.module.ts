@@ -29,6 +29,8 @@ import { GroupByDatePipe } from './pipes/group-by-date.pipe';
 import { ShowOnFocusDirective } from './directives/show-on-focus.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpTestComponent } from './components/http-test/http-test.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MatSelectModule } from '@angular/material/select';
     GroupByDatePipe,
     ShowOnFocusDirective,
     CurrencyPipe,
+    HttpTestComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatButtonToggleModule,
     MatSelectModule,
-    AppRoutingModule,
     BrowserModule,
     CommonModule,
     FirestoreModule,

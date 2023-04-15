@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrencyData, CurrencyRate } from './components/transactions/transaction-types';
 import { CurrencyService } from './services/currency.service';
+import { CurrencyData, CurrencyRate } from './components/transactions/transaction-types';
 import { throwError } from 'rxjs';
 @Component({
   selector: 'app-root',
@@ -8,13 +8,6 @@ import { throwError } from 'rxjs';
 })
 
 export class AppComponent implements OnInit {
-  title = 'money-manager-angular';
-  tabsContent = [
-    { label: 'All', incomesMode: false, expensesMode: false },
-    { label: 'Incomes', incomesMode: true, expensesMode: false },
-    { label: 'Expenses', incomesMode: false, expensesMode: true }
-  ];
-
   currencies = [
     { name: 'EUR', symbol: '€' },
     { name: 'UAH', symbol: '₴' },
@@ -32,7 +25,7 @@ export class AppComponent implements OnInit {
 
   constructor(protected currencyService: CurrencyService) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.currencyChange(this.selectedCurrency);
   }
 

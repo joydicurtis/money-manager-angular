@@ -52,3 +52,10 @@ export type CurrencyRate = {
   symbol: string;
   amount?: number;
 }
+
+export type TestData = {
+  id?: number,
+  title: string,
+  body: string,
+  userId: number
+}

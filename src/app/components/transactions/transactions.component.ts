@@ -3,7 +3,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
 import { Transaction } from './transaction-types';
-import { Logger } from 'src/app/decorators/logger.decorator';
 import { fromEvent } from 'rxjs';
 
 @Component({
@@ -60,12 +59,10 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  @Logger
   protected deleteItem(item: Transaction) {
     this._manageService.deleteTransaction(item.id);
   }
 
-  @Logger
   protected openDialog(
     item?: Transaction,
     incomesMode?: boolean,
@@ -85,7 +82,6 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  @Logger
   protected openEditDialog(item: Transaction) {
     this.manageDialogRef = this.dialog.open(TransactionsDialogComponent, {
       data: {

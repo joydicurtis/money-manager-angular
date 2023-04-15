@@ -1,5 +1,4 @@
 <div class="container money-manager-theme">
-  <!-- <app-chart></app-chart> -->
   <div class="currency-data">
     <mat-form-field appearance="fill">
       <mat-label>Currency</mat-label>
@@ -18,13 +17,14 @@
       {{ currency.amount }}
     </div>
   </div>
-
-  <mat-tab-group class="tabs" mat-stretch-tabs="false" mat-align-tabs="start">
-    <mat-tab *ngFor="let tab of tabsContent" [label]="tab.label">
-      <app-transactions
-        [incomesMode]="tab.incomesMode"
-        [expensesMode]="tab.expensesMode"
-      ></app-transactions>
-    </mat-tab>
-  </mat-tab-group>
+  <header>
+    <nav>
+      <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+      <a routerLink="http-test" routerLinkActive="active">Test Http Service</a>
+      <a routerLink="converter" routerLinkActive="active">Converter</a>
+    </nav>
+  </header>
+  <router-outlet></router-outlet>
 </div>
