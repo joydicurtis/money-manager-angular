@@ -1,0 +1,9 @@
+<ng-container *ngFor="let item of testData">
+  <h2>{{ item.title }}</h2>
+  <p>{{ item.body }}</p>
+</ng-container>
+
+<button type="button" (click)="addTestItem()">Add new test data</button>
+<button type="button" (click)="putTestItem(1)">Put test data</button>
+<button type="button" (click)="patchTestItem(1)">Patch test data</button>
+<button type="button" (click)="deleteTestItem(1)">Delete test data</button>
