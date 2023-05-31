@@ -1,0 +1,43 @@
+<div class="http-test-dialog__header">
+  <h2 mat-dialog-title>Add item</h2>
+  <button class="http-test__close" mat-icon-button aria-label="Close" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <form [formGroup]="httpTestForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput type="text" formControlName="titleControl" />
+      <mat-error *ngIf="httpTestForm.controls['titleControl'].errors">
+        {{ httpTestForm.controls['titleControl'].errors['myValidator'].message }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Body</mat-label>
+      <textarea matInput type="text" formControlName="bodyControl"></textarea>
+      <mat-error *ngIf="httpTestForm.controls['bodyControl'].errors">
+        {{ httpTestForm.controls['bodyControl'].errors['myValidator'].message }}
+      </mat-error>
+    </mat-form-field>
+    <ul>
+      <li formArrayName="tags" *ngFor="let tag of aliasesArrayControl; let i = index">
+        <mat-form-field>
+          <mat-label>Tag name</mat-label>
+          <input matInput type="text" formControlName="{{ i }}" />
+          <mat-error *ngIf="this.tagsControl.controls[i].errors">
+            {{ this.tagsControl.controls[i].errors!['myValidator'].message }}
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteTag(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    </ul>
+    <button mat-flat-button color="accent" type="button" (click)="addTag()">Add tag</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button type="button" (click)="close()">Cancel</button>
+  <button mat-flat-button color="primary" type="submit" (click)="submit()">Save</button>
+</mat-dialog-actions>

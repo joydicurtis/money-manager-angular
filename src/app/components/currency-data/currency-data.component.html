@@ -1,0 +1,20 @@
+<div class="currency-data__control">
+  <mat-form-field appearance="fill">
+    <mat-label>Currency</mat-label>
+    <mat-select [(value)]="selectedCurrency" (selectionChange)="currencyChange(selectedCurrency)">
+      <mat-option *ngFor="let currency of currencies" [value]="currency">
+        {{ currency.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="currency-data__items">
+  <div>
+    {{ currentDateRate * 1000 | date }}
+  </div>
+  <div *ngFor="let currency of currencyRes">
+    {{ currency.symbol }}
+    :
+    {{ currency.amount }}
+  </div>
+</div>

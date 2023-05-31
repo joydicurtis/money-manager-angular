@@ -1,0 +1,16 @@
+
+.post {
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+  &__content {
+    position: relative;
+  }
+  &__content-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

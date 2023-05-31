@@ -1,0 +1,10 @@
+<ng-container *ngIf="post">
+  <h4>
+    {{ post.title }}
+  </h4>
+  <p>{{ post.body }}</p>
+  <ul class="http-test__tags">
+    <li *ngFor="let tag of post.tags; last as isLast">#{{ tag }} {{ isLast ? '' : ', ' }}</li>
+  </ul>
+  <a mat-flat-button color="primary" [routerLink]="['/http-test/edit', post.id]">Edit</a>
+</ng-container>

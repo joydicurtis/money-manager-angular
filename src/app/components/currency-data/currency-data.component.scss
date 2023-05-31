@@ -1,0 +1,21 @@
+.currency-data {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  .mat-mdc-form-field {
+    max-width: 105px;
+  }
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+  &__items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+  }
+}

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Category, dialogData, Transaction, TransactionType } from '../transaction-types';
+import { Category, dialogData, Transaction, TransactionType } from '../../../shared/transaction-types';
 import { incomesCategories } from './categories.const';
 import { expensesCategories } from './categories.const';
 
@@ -61,6 +61,7 @@ export class TransactionsDialogComponent implements OnInit {
       noteControl: this.fb.control(''),
       categories: this.fb.control('', Validators.required),
     });
+    this.transactionFormGroup.get('typeControl')?.valueChanges.subscribe(item => this.onTypeChange(item.value));
     if (this.data) {
       this.onTypeChange(
         this.data.type.value === this.transactionTypes[0].value
@@ -73,9 +74,7 @@ export class TransactionsDialogComponent implements OnInit {
 
   onTypeChange(value: TransactionType) {
     this.selectedType = value;
-    value === this.transactionTypes[0]
-      ? (this.categories = incomesCategories)
-      : (this.categories = expensesCategories);
+    this.categories = (String(this.selectedType) === this.transactionTypes[0].value) ? incomesCategories : expensesCategories;
   }
 
   loadData(selectedType: TransactionType) {

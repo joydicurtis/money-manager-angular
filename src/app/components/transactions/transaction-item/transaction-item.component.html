@@ -1,19 +1,21 @@
-<div class="transaction-item__description">
-  <div class="transaction-item__info">
-    <div class="transaction-item__category">{{ item.category.name }}</div>
-    <div class="transaction-item__sum">
-      {{ item.sum | currency }}
+<mat-card class="transaction__item" [@deleteItem]="state">
+  <div class="transaction__item-description">
+    <div class="transaction__item-info">
+      <div class="transaction__item-category">{{ item.category.name }}</div>
+      <div class="transaction__item-sum">
+        {{ item.sum | currency }}
+      </div>
+    </div>
+    <div *ngIf="item.note" class="transaction__item-note">
+      {{ item.note }}
     </div>
   </div>
-  <div *ngIf="item.note" class="transaction-item__note">
-    {{ item.note }}
+  <div class="transaction__item-actions">
+    <button mat-mini-fab color="primary" aria-label="Edit" (click)="editItem(item)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteItem(item)">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
-</div>
-<div class="transaction-item__actions">
-  <button mat-icon-button color="primary" aria-label="Edit" (click)="editItem(item)">
-    <mat-icon>edit</mat-icon>
-  </button>
-  <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteItem(item)">
-    <mat-icon>delete</mat-icon>
-  </button>
-</div>
+</mat-card>

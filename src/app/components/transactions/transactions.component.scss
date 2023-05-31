@@ -1,32 +1,38 @@
-@use "sass:map";
-@use "@angular/material" as mat;
+// @use "sass:map";
+// @use "@angular/material" as mat;
 
-@mixin theme($theme) {
-  /* stylelint-disable */
-  $typography: mat.get-typography-config($theme);
-  $colors: map.get($theme, color);
-  $primary: map.get($colors, primary);
-  $caution: map.get($colors, caution);
-  $dark: map.get($colors, dark);
-  $danger: map.get($colors, danger);
-  /* stylelint-enable */
+// @mixin theme($theme) {
+//   /* stylelint-disable */
+//   $typography: mat.get-typography-config($theme);
+//   $colors: map.get($theme, color);
+//   $primary: map.get($colors, primary);
+//   $caution: map.get($colors, caution);
+//   $dark: map.get($colors, dark);
+//   $danger: map.get($colors, danger);
+//   /* stylelint-enable */
 
   .transactions {
     position: relative;
     display: block;
     height: 100%;
-    padding: 16px;
+    padding: 16px 0;
 
     &__title {
-      @include mat.typography-level($typography, "headline-1");
+      // @include mat.typography-level($typography, "headline-1");
 
       margin: 0 0 16px;
+    }
+
+    &__search {
+      .mat-mdc-form-field {
+        width: 100%;
+      }
     }
 
     &__action {
       position: absolute;
       right: 16px;
-      bottom: 16px;
+      top: 8px;
     }
   }
-}
+// }

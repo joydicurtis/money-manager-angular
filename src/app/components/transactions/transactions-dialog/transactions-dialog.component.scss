@@ -1,15 +1,15 @@
-@use "sass:map";
-@use "@angular/material" as mat;
+// @use "sass:map";
+// @use "@angular/material" as mat;
 
-@mixin theme($theme) {
-  /* stylelint-disable */
-  $typography: mat.get-typography-config($theme);
-  $colors: map.get($theme, color);
-  $primary: map.get($colors, primary);
-  $caution: map.get($colors, caution);
-  $dark: map.get($colors, dark);
-  $danger: map.get($colors, danger);
-  /* stylelint-enable */
+// @mixin theme($theme) {
+//   /* stylelint-disable */
+//   $typography: mat.get-typography-config($theme);
+//   $colors: map.get($theme, color);
+//   $primary: map.get($colors, primary);
+//   $caution: map.get($colors, caution);
+//   $dark: map.get($colors, dark);
+//   $danger: map.get($colors, danger);
+//   /* stylelint-enable */
 
   .transaction-dialog {
     &__header {
@@ -25,6 +25,12 @@
       margin-bottom: 16px;
     }
 
+    &__categories--error {
+      border: solid 1px red;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
     &__categories-item {
       display: flex;
       align-items: center;
@@ -38,9 +44,9 @@
       margin-bottom: 16px;
     }
 
-    &__categories-item-name {
-      @include mat.typography-level($typography, "caption");
-    }
+    // &__categories-item-name {
+    //   @include mat.typography-level($typography, "caption");
+    // }
     /* stylelint-disable */
     .mat-button-toggle-group {
       width: 100%;
@@ -65,24 +71,25 @@
     .mat-mdc-form-field {
       width: 100%;
 
-      @include mat.typography-level($typography, "caption");
+      // @include mat.typography-level($typography, "caption");
     }
 
     .mat-mdc-form-field-input-control {
       /* stylelint-disable */
-      &.mat-mdc-input-element {
-        @include mat.typography-level($typography, "body-1");
-      }
+      // &.mat-mdc-input-element {
+      //   @include mat.typography-level($typography, "body-1");
+      // }
       /* stylelint-enable */
     }
 /* stylelint-disable */
     .mat-mdc-radio-button {
       width: 100%;
       text-align: center;
-      padding: 8px;
+      border: solid 2px transparent;
+      cursor: pointer;
 
       &.mat-mdc-radio-checked {
-        background-color: rgba(56, 142, 60, 0.1);
+        border: solid 2px #ffd740;
         border-radius: 8px;
       }
 
@@ -94,8 +101,14 @@
       }
 
       .mdc-form-field {
+        width: 100%;
+        height: 100%;
         > label {
+          padding: 8px;
           padding-left: 0;
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
         }
       }
     }
@@ -106,4 +119,4 @@
     justify-content: end !important;
     padding: 16px !important;
   }
-}
+// }

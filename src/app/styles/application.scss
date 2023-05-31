@@ -1,21 +1,24 @@
-@use "@angular/material" as mat;
-@use "theme" as theme;
-@use "./_mat-library/mat-library";
-@use "./_mat-library/mat-tab" as tabs;
-@use "../components/transactions/transactions.component" as transactions;
-@use "../components/transactions/transaction-item/transaction-item.component.scss" as
-  transaction-item;
-@use "../components/transactions/transactions-dialog/transactions-dialog.component" as
-  transaction-dialog;
-@use "colors";
-@use "layout";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'layout';
+@import 'nav';
+// @use "@angular/material" as mat;
+// @use "theme" as theme;
+// @use "./_mat-library/mat-library";
+// @use "./_mat-library/mat-tab" as tabs;
+// @use "../components/transactions/transactions.component" as transactions;
+// @use "../components/transactions/transaction-item/transaction-item.component.scss" as
+//   transaction-item;
+// @use "../components/transactions/transactions-dialog/transactions-dialog.component" as
+//   transaction-dialog;
+// @use "colors";
+// @use "layout";
 
 
-@include mat.core();
-@include mat.core-theme(theme.$my-app-theme);
-@include mat.button-theme(theme.$my-app-theme);
+// @include mat.core();
+// @include mat.core-theme(theme.$my-app-theme);
+// @include mat.button-theme(theme.$my-app-theme);
 
-@include tabs.theme(theme.$my-app-theme);
-@include transactions.theme(theme.$my-app-theme);
-@include transaction-item.theme(theme.$my-app-theme);
-@include transaction-dialog.theme(theme.$my-app-theme);
+// @include tabs.theme(theme.$my-app-theme);
+// @include transactions.theme(theme.$my-app-theme);
+// @include transaction-item.theme(theme.$my-app-theme);
+// @include transaction-dialog.theme(theme.$my-app-theme);

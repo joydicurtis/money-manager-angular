@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "money-manager-angular-9088f": {
+      "hosting": {
+        "money-manager-angular": [
+          "money-manager-angular-9088f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "money-manager-angular-9088f"
+  }
+}

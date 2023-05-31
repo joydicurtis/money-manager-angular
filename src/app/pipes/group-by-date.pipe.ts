@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Transaction, TransactionGroup } from '../components/transactions/transaction-types';
+import { Transaction, TransactionGroup } from '../shared/transaction-types';
 
 @Pipe({
   name: 'groupByDate'
@@ -10,10 +10,10 @@ transform(value: Transaction[] = []): TransactionGroup[] {
       return [];
     }
     const grouppedData = value.reduce((prev: {[key: string]: Transaction[]}, cur: Transaction) => {
-      if (!prev[cur['date'].toDate().toLocaleDateString()]) {
-        prev[cur['date'].toDate().toLocaleDateString()] = [cur];
+      if (!prev[String(cur['date'].toDate())]) {
+        prev[String(cur['date'].toDate())] = [cur];
       } else {
-        prev[cur['date'].toDate().toLocaleDateString()].push(cur);
+        prev[String(cur['date'].toDate())].push(cur);
       }
       return prev;
     }, {});
