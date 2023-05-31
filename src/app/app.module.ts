@@ -42,6 +42,8 @@ import { SortByDatePipe } from './pipes/sort-by-date.pipe';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [
@@ -85,8 +87,10 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     CommonModule,
     MatDialogModule,
     MatTabsModule,
+    AngularFireModule,
+    AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
   ],
   exports: [MatInputModule],
   providers: [MatDatepickerModule, { provide: 'ApiURL', useValue: 'some-url', multi: true }, { provide: 'ApiURL', useValue: 'some-url1', multi: true }],
