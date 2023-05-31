@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } fr
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
-import { Transaction } from './transaction-types';
+import { Transaction } from '../../shared/transaction-types';
 import { fromEvent } from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ import { fromEvent } from 'rxjs';
 })
 
 export class TransactionsComponent implements OnInit {
-  public transactions?: any;
+  public transactions?: Transaction[];
   manageDialogRef!: MatDialogRef<TransactionsDialogComponent>;
   title!: string;
   @ViewChild('searchControl', { static: true }) searchControl!: ElementRef;
@@ -33,10 +33,11 @@ export class TransactionsComponent implements OnInit {
     this.getItems();
     const s = fromEvent(this.searchControl.nativeElement, 'input');
     s.subscribe((input: any) => {
+      console.log('input', input, typeof(input));
       if (input.target.value === '') {
         this.getItems();
       }
-      this.transactions = this.transactions.filter((item: Transaction) => item.category.name.toLowerCase().includes((input.target.value.toLowerCase())));
+      this.transactions = this.transactions?.filter((item: Transaction) => item.category.name.toLowerCase().includes((input.target.value.toLowerCase())));
     });
   }
 

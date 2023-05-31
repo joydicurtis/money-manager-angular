@@ -1,30 +1,47 @@
 <div class="container money-manager-theme">
-  <div class="currency-data">
-    <mat-form-field appearance="fill">
-      <mat-label>Currency</mat-label>
-      <mat-select [(value)]="selectedCurrency" (selectionChange)="currencyChange(selectedCurrency)">
-        <mat-option *ngFor="let currency of currencies" [value]="currency">
-          {{ currency.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div>
-      {{ currentDateRate * 1000 | date }}
-    </div>
-    <div *ngFor="let currency of currencyRes">
-      {{ currency.symbol }}
-      :
-      {{ currency.amount }}
-    </div>
-  </div>
-  <header>
-    <nav>
-      <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        Home
-      </a>
-      <a routerLink="http-test" routerLinkActive="active">Test Http Service</a>
-      <a routerLink="converter" routerLinkActive="active">Converter</a>
-    </nav>
+  <header class="header">
+    <button *ngIf="!isSignedIn" mat-flat-button type="button" (click)="openAuthDialog()">
+      Sign Up
+    </button>
+    <button
+      mat-flat-button
+      color="accent"
+      type="submit"
+      (click)="isSignedIn ? signOut() : signIn()"
+    >
+      {{ isSignedIn ? 'Sign Out' : 'Sign In' }}
+    </button>
   </header>
-  <router-outlet></router-outlet>
+  <app-currency-data></app-currency-data>
+  <ng-container *appLoggedIn="isSignedIn">
+    <nav>
+      <ul class="nav">
+        <li class="nav-item">
+          <a
+            class="nav__item-link"
+            routerLink=""
+            routerLinkActive="nav__item-link--active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav__item-link"
+            routerLink="http-test"
+            routerLinkActive="nav__item-link--active"
+          >
+            Test Http Service
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav__item-link" routerLink="converter" routerLinkActive="nav__item-link--active"
+            >Converter</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <router-outlet></router-outlet>
+  </ng-container>
 </div>

@@ -1,0 +1,26 @@
+<div class="post">
+  <h4>
+    <a [routerLink]="['/http-test', item.id]">{{ item.title }}</a>
+  </h4>
+  <div class="post__item">
+    <div class="post__content">
+      <p class="post__content-text">
+        {{ item.body }}
+      </p>
+      <ng-template #dynamic>
+        {{ item.body }}
+      </ng-template>
+    </div>
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="isDynamicTooltipVisible = !isDynamicTooltipVisible; showDynamicComponent()"
+      aria-label="Preview"
+    >
+      <mat-icon>{{ isDynamicTooltipVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+  </div>
+  <ul class="http-test__tags">
+    <li *ngFor="let tag of item.tags; last as isLast">#{{ tag }} {{ isLast ? '' : ', ' }}</li>
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+.http-test {
+  &__actions {
+    display: flex;
+    gap: 4px;
+    button {
+      margin-bottom: 4px;
+    }
+  }
+  &__tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline;
+      font-style: italic;
+    }
+  }
+}

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   deleteDoc,
   doc,
-  orderBy,
   query,
   setDoc,
   updateDoc,
@@ -10,7 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
-import { Transaction } from '../components/transactions/transaction-types';
+import { Transaction } from '../shared/transaction-types';
 @Injectable({
   providedIn: 'root',
 })
@@ -34,7 +33,7 @@ export class ManageService {
 
   public getTransactions(): Observable<Transaction[]> {
     const incomesRef = collection(this.fs, 'transactions');
-    const q = query(incomesRef, orderBy('time'));
+    const q = query(incomesRef);
     return collectionData(q) as Observable<Transaction[]>;
   }
 

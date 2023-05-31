@@ -1,42 +1,42 @@
-@use "@angular/material" as mat;
+// @use "@angular/material" as mat;
 
-$heading-font-family: "'Montserrat', sans-serif";
-/* stylelint-disable */
-$my-app-typography: mat.define-typography-config(
-  $headline-1:
-    mat.define-typography-level(
-      32px,
-      40px,
-      700,
-      $font-family: $heading-font-family
-    ),
-  $subtitle-1:
-    mat.define-typography-level(
-      24px,
-      32px,
-      700,
-      $font-family: $heading-font-family
-    ),
-  $body-1:
-    mat.define-typography-level(
-      16px,
-      24px,
-      400,
-      $font-family: $heading-font-family
-    ),
-  $body-2:
-    mat.define-typography-level(
-      16px,
-      24px,
-      700,
-      $font-family: $heading-font-family
-    ),
-  $caption:
-    mat.define-typography-level(
-      12px,
-      16px,
-      400,
-      $font-family: $heading-font-family
-    ),
-);
-/* stylelint-enable */
+// $heading-font-family: "'Montserrat', sans-serif";
+// /* stylelint-disable */
+// $my-app-typography: mat.define-typography-config(
+//   $headline-1:
+//     mat.define-typography-level(
+//       32px,
+//       40px,
+//       700,
+//       $font-family: $heading-font-family
+//     ),
+//   $subtitle-1:
+//     mat.define-typography-level(
+//       24px,
+//       32px,
+//       700,
+//       $font-family: $heading-font-family
+//     ),
+//   $body-1:
+//     mat.define-typography-level(
+//       16px,
+//       24px,
+//       400,
+//       $font-family: $heading-font-family
+//     ),
+//   $body-2:
+//     mat.define-typography-level(
+//       16px,
+//       24px,
+//       700,
+//       $font-family: $heading-font-family
+//     ),
+//   $caption:
+//     mat.define-typography-level(
+//       12px,
+//       16px,
+//       400,
+//       $font-family: $heading-font-family
+//     ),
+// );
+// /* stylelint-enable */

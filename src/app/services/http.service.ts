@@ -5,18 +5,19 @@ import { Observable, Observer } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-  get(url: string): Observable<any> {
+  getRequestState(method: string, url: string, data?: any) {
     const xhr = new XMLHttpRequest();
     return new Observable((observer: Observer<any>) => {
-      xhr.open('GET', url);
+      xhr.open(method, url);
       xhr.responseType = 'json';
+      // xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
       xhr.send();
       xhr.onreadystatechange = () => {
         if (xhr.readyState !== 4) {
           return;
         }
 
-        if (xhr.status === 200) {
+        if (xhr.status >= 200 && xhr.status < 300) {
           observer.next(xhr.response);
           observer.complete();
         } else {
@@ -26,79 +27,23 @@ export class HttpService {
     });
   }
 
-  post(url: string, data: any): Observable<any> {
-    const xhr = new XMLHttpRequest();
-    return new Observable((observer: Observer<any>) => {
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState !== 4) {
-          return;
-        }
-        if (xhr.status === 201) {
-          observer.next(xhr);
-        } else {
-          observer.error(xhr);
-        }
-      };
-      xhr.open("POST", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      xhr.send(JSON.stringify(data));
-    });
+  get(url: string): Observable<any> {
+    return this.getRequestState('GET', url);
   }
 
-  put(url: string, data: any): Observable<any> {
-    const xhr = new XMLHttpRequest();
-    return new Observable((observer: Observer<any>) => {
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState !== 4) {
-          return;
-        }
-        if (xhr.status === 200) {
-          observer.next(xhr);
-        } else {
-          observer.error(xhr);
-        }
-      };
-      xhr.open("PUT", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      xhr.send(JSON.stringify(data));
-    });
+  post(url: string, data: any): Observable<any> {
+    return this.getRequestState('POST', url, data);
   }
 
   patch(url: string, data: any): Observable<any> {
-    const xhr = new XMLHttpRequest();
-    return new Observable((observer: Observer<any>) => {
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState !== 4) {
-          return;
-        }
-        if (xhr.status === 200) {
-          observer.next(xhr);
-        } else {
-          observer.error(xhr);
-        }
-      };
-      xhr.open("PUT", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      xhr.send(JSON.stringify(data));
-    });
+    return this.getRequestState('PATCH', url, data);
+  }
+
+  put(url: string, data: any): Observable<any> {
+    return this.getRequestState('PUT', url, data);
   }
 
   delete(url: string): Observable<any> {
-    const xhr = new XMLHttpRequest();
-    return new Observable((observer: Observer<any>) => {
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState !== 4) {
-          return;
-        }
-        if (xhr.status === 200) {
-          observer.next(xhr);
-        } else {
-          observer.error(xhr);
-        }
-      };
-      xhr.open("DELETE", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      xhr.send();
-    });
+    return this.getRequestState('DELETE', url);
   }
 }

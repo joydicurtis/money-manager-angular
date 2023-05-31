@@ -1,48 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { CurrencyService } from './services/currency.service';
-import { CurrencyData, CurrencyRate } from './components/transactions/transaction-types';
-import { throwError } from 'rxjs';
+import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
 
-export class AppComponent implements OnInit {
-  currencies = [
-    { name: 'EUR', symbol: '€' },
-    { name: 'UAH', symbol: '₴' },
-    { name: 'USD', symbol: '$' },
-    { name: 'GBP', symbol: '£' }
-  ]
+export class AppComponent {
+  isSignedIn = false;
+  AuthDialogRef!: MatDialogRef<AuthDialogComponent>;
 
-  selectedCurrency: CurrencyRate = this.currencies[1];
-  currencyRes: CurrencyRate[] = [];
-
-  usdUahRate!: number;
-  usdEurRate!: number;
-  usdGbpRate!: number;
-  currentDateRate!: any;
-
-  constructor(protected currencyService: CurrencyService) {}
-
-  ngOnInit() {
-    this.currencyChange(this.selectedCurrency);
+  constructor(protected authService: AuthService, public dialog: MatDialog) {
+    this.authService.isLoggedIn.subscribe((item: any) => {this.isSignedIn = item});
   }
 
-  currencyChange(selectedCurrency: CurrencyRate) {
-    this.currencyRes = [];
-    this.currencyService.getCurrencyRate(selectedCurrency.name).subscribe({
-      next: (response: CurrencyData) => {
-        this.currencies.forEach(value => {
-          if (value.name !== this.selectedCurrency.name) {
-            this.currencyRes.push({name: value.name, amount: response.conversion_rates[value.name], symbol: value.symbol});
-          }
-        });
-        this.currentDateRate = response.time_last_update_unix;
-      },
-      error: (error: Error) => {
-        return throwError(() => error);
+  signIn() {
+    return this.authService.logIn();
+  }
+  signOut() {
+    return this.authService.logOut();
+  }
+
+  protected openAuthDialog() {
+    this.AuthDialogRef = this.dialog.open(AuthDialogComponent);
+    this.AuthDialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.authService.addUsers(data);
       }
-    })
+    });
   }
 }

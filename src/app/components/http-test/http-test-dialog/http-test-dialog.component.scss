@@ -1,0 +1,129 @@
+.http-test-dialog {
+  // @use "sass:map";
+// @use "@angular/material" as mat;
+
+// @mixin theme($theme) {
+//   /* stylelint-disable */
+//   $typography: mat.get-typography-config($theme);
+//   $colors: map.get($theme, color);
+//   $primary: map.get($colors, primary);
+//   $caution: map.get($colors, caution);
+//   $dark: map.get($colors, dark);
+//   $danger: map.get($colors, danger);
+//   /* stylelint-enable */
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+
+    &__categories {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    &__categories--error {
+      border: solid 1px red;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    &__categories-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc(100% / 3 - 6px);
+      margin: 2px;
+      border-radius: 8px;
+    }
+
+    &__type {
+      margin-bottom: 16px;
+    }
+
+    // &__categories-item-name {
+    //   @include mat.typography-level($typography, "caption");
+    // }
+    /* stylelint-disable */
+    .mat-button-toggle-group {
+      width: 100%;
+
+      .mat-button-toggle {
+        flex: 1 1 50%;
+      }
+    }
+    /* stylelint-enable */
+
+    .mat-mdc-dialog-title {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0 8px 0 24px;
+    }
+
+    .mdc-dialog-content {
+      padding: 8px 24px !important;
+    }
+
+    .mat-mdc-form-field {
+      width: 100%;
+
+      // @include mat.typography-level($typography, "caption");
+    }
+
+    .mat-mdc-form-field-input-control {
+      /* stylelint-disable */
+      // &.mat-mdc-input-element {
+      //   @include mat.typography-level($typography, "body-1");
+      // }
+      /* stylelint-enable */
+    }
+/* stylelint-disable */
+    .mat-mdc-radio-button {
+      width: 100%;
+      text-align: center;
+      border: solid 2px transparent;
+      cursor: pointer;
+
+      &.mat-mdc-radio-checked {
+        border: solid 2px #ffd740;
+        border-radius: 8px;
+      }
+
+      .mdc-radio {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        inset: 0;
+      }
+
+      .mdc-form-field {
+        width: 100%;
+        height: 100%;
+        > label {
+          padding: 8px;
+          padding-left: 0;
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  /* stylelint-enable */
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        display: flex;
+      }
+    }
+  }
+
+  .mat-mdc-dialog-actions {
+    justify-content: end !important;
+    padding: 16px !important;
+  }
+// }

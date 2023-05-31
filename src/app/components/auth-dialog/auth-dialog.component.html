@@ -1,0 +1,48 @@
+<div class="http-test-dialog__header">
+  <h2 mat-dialog-title>Sign Up</h2>
+  <button class="http-test__close" mat-icon-button aria-label="Close" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <form [formGroup]="authForm">
+    <mat-form-field>
+      <mat-label>User email</mat-label>
+      <input matInput type="email" formControlName="emailControl" />
+      <mat-error *ngIf="isSubmitted && authForm.controls['emailControl'].errors?.['required']">
+        This field is required
+      </mat-error>
+      <mat-error *ngIf="isSubmitted && authForm.controls['emailControl'].errors?.['pattern']">
+        It is not format of email address!
+      </mat-error>
+      <mat-error
+        *ngIf="isSubmitted && authForm.controls['emailControl'].errors?.['userExistsValidator']"
+      >
+        {{ authForm.controls['emailControl'].errors?.['userExistsValidator'].message }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="passwordControl" />
+      <mat-error *ngIf="isSubmitted && authForm.controls['passwordControl'].errors?.['required']">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Repeat Password</mat-label>
+      <input matInput type="password" formControlName="repeatPasswordControl" />
+      <mat-error
+        *ngIf="isSubmitted && authForm.controls['repeatPasswordControl'].errors?.['required']"
+      >
+        This field is required
+      </mat-error>
+      <mat-error *ngIf="authForm.errors">
+        {{ authForm.errors['matchValidator'].message }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button type="button" (click)="close()">Cancel</button>
+  <button mat-flat-button color="primary" type="submit" (click)="submit()">Save</button>
+</mat-dialog-actions>

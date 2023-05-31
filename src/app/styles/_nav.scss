@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 16px;
+  background-color: black;
+  &__item-link {
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  &__item-link--active {
+    color: #ffd740;
+  }
+}

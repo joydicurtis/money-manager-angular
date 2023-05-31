@@ -1,4 +1,4 @@
-@import "../styles/colors";
+// @import "../styles/colors";
 
 *,
 *::before,
@@ -17,8 +17,6 @@ body {
   padding: 0;
   color: #212121;
   font-family: Montserrat, "Helvetica Neue", sans-serif;
-  background-color: $color-background;
-  background-color: #d1c4e9;
 }
 
 app-root {
@@ -40,12 +38,11 @@ app-root {
   max-width: 30rem !important;
 }
 
-.currency-data {
+.header {
   display: flex;
-  justify-content: space-between;
-  background-color: white;
-}
-
-nav a.active {
-  color: green;
+  justify-content: flex-end;
+  gap: 16px;
+  background-color: #673ab7;
+  padding: 16px;
+  text-align: right;
 }

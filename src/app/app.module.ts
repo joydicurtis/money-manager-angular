@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatCardModule } from '@angular/material/card';
 import { ChartComponent } from './components/chart/chart.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,11 +14,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { FirestoreModule } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +29,19 @@ import { CurrencyPipe } from './pipes/currency.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpTestComponent } from './components/http-test/http-test.component';
 import { HomeComponent } from './components/home/home.component';
+import { CurrencyDataComponent } from './components/currency-data/currency-data.component';
+import { HttpTestDialogComponent } from './components/http-test/http-test-dialog/http-test-dialog.component';
+import { HttpTestDetailsComponent } from './components/http-test/http-test-details/http-test-details.component';
+import { HttpTestDetailsEditComponent } from './components/http-test/http-test-details-edit/http-test-details-edit.component';
+import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
+import { LoggedDirective } from './directives/logged.directive';
+import { HttpTestTooltipComponent } from './components/http-test/http-test-tooltip/http-test-tooltip.component';
+import { HttpTestItemComponent } from './components/http-test/http-test-item/http-test-item.component';
+import { SortByDatePipe } from './pipes/sort-by-date.pipe';
+
+
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -43,11 +54,21 @@ import { HomeComponent } from './components/home/home.component';
     ShowOnFocusDirective,
     CurrencyPipe,
     HttpTestComponent,
-    HomeComponent
+    HomeComponent,
+    CurrencyDataComponent,
+    HttpTestDialogComponent,
+    HttpTestDetailsComponent,
+    HttpTestDetailsEditComponent,
+    AuthDialogComponent,
+    LoggedDirective,
+    HttpTestTooltipComponent,
+    HttpTestItemComponent,
+    SortByDatePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
@@ -62,11 +83,10 @@ import { HomeComponent } from './components/home/home.component';
     MatSelectModule,
     BrowserModule,
     CommonModule,
-    FirestoreModule,
     MatDialogModule,
     MatTabsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
+    provideFirestore(() => getFirestore())
   ],
   exports: [MatInputModule],
   providers: [MatDatepickerModule, { provide: 'ApiURL', useValue: 'some-url', multi: true }, { provide: 'ApiURL', useValue: 'some-url1', multi: true }],
