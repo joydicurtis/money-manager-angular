@@ -5,15 +5,22 @@ import {
   query,
   setDoc,
 } from 'firebase/firestore';
-import { Firestore, collectionData, collection, where } from '@angular/fire/firestore';
+import { collectionData, collection, where } from '@angular/fire/firestore';
 import { User } from '../shared/transaction-types';
 import { FormGroup } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private fs: Firestore) {}
+  private dbPath = '/users';
+
+  usersRef: AngularFirestoreCollection<User>;
+
+  constructor(private db: AngularFirestore) {
+    this.usersRef = db.collection(this.dbPath);
+  }
 
   private isSignedIn = new BehaviorSubject<boolean>(false);
 
@@ -33,25 +40,18 @@ export class AuthService {
     return this.isSignedIn;
   }
 
-  public getUsers(): Observable<User[]> {
-    const usersRef = collection(this.fs, 'users');
-    const q = query(usersRef);
-    return collectionData(q) as Observable<User[]>;
+  public getUsers(): AngularFirestoreCollection<User> {
+    return this.usersRef;
   }
 
-  public getUserByEmail(email: string): Observable<User[]> {
-    const usersRef = collection(this.fs, 'users');
-    const q = query(usersRef, where("email", "==", email));
-    return collectionData(q) as Observable<User[]>;
+  public getUserByEmail(email: string) {
+    return this.usersRef.doc(email);
   }
 
   public addUsers(item: FormGroup) {
-    const itemid = doc(collection(this.fs, 'id')).id;
-    return setDoc(doc(this.fs, 'users', itemid), {
-      id: itemid,
+    return this.usersRef.add({
       email: item.value.emailControl,
       password: item.value.passwordControl
     });
   }
-
 }

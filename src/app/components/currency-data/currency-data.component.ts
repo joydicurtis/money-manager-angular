@@ -39,7 +39,6 @@ export class CurrencyDataComponent implements OnInit {
           }
         });
         this.currentDateRate = response.time_last_update_unix;
-        console.log(this.currentDateRate);
       },
       error: (error: Error) => {
         return throwError(() => error);

@@ -1,7 +1,7 @@
 import { Timestamp } from 'firebase/firestore';
 
 export type Transaction = {
-  id: string;
+  id?: string;
   type: TransactionType;
   date: Timestamp;
   sum: number;
@@ -58,7 +58,8 @@ export type TestData = {
   title: string,
   body: string,
   userId?: number,
-  tags?: string[]
+  tags?: string[],
+  date?: Date
 }
 
 export type User = {

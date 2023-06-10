@@ -1,24 +1,22 @@
-import { TestBed } from '@angular/core/testing';
-
-import { AuthService } from './auth.service';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from '../../environments/environment';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { AuthService } from './auth.service';
+import { TestBed } from '@angular/core/testing';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../../environments/environment';
 
 describe('AuthService', () => {
   let service: AuthService;
 
+  TestBed.configureTestingModule({
+    imports: [
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFirestoreModule
+    ],
+    providers: [ AuthService, { provide: Firestore, useValue: {} } ]
+  });
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule
-      ],
-      providers: [ AuthService, { provide: Firestore, useValue: {} } ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    });
     service = TestBed.inject(AuthService);
   });
 

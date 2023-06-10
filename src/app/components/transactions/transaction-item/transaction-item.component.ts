@@ -21,8 +21,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 export class TransactionItemComponent implements OnInit {
   @Input() item!: Transaction;
-  @Output() onDeleteEvent = new EventEmitter<Transaction>();
-  @Output() onEditEvent = new EventEmitter<Transaction>();
+  @Output() deleteEvent = new EventEmitter<Transaction>();
+  @Output() editEvent = new EventEmitter<Transaction>();
   @HostBinding('class.transaction--income') isIncome = false;
   @HostBinding('class.transaction--expense') isExpense = false;
   isDeleted = false;
@@ -36,13 +36,11 @@ export class TransactionItemComponent implements OnInit {
     this.isDeleted = !this.isDeleted;
     this.state = this.isDeleted ? 'deleted' : 'initial';
     setTimeout(() => {
-      this.onDeleteEvent.emit(value);
+      this.deleteEvent.emit(value);
     }, 300);
-
-
   }
 
   editItem(value: Transaction) {
-    this.onEditEvent.emit(value);
+    this.editEvent.emit(value);
   }
 }

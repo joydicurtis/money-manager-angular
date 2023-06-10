@@ -4,14 +4,16 @@ import { Observable, Observer } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class HttpService {
-  getRequestState(method: string, url: string, data?: any) {
+
+  getHttpRequestState(method, url, data?): Observable<unknown> {
     const xhr = new XMLHttpRequest();
     return new Observable((observer: Observer<any>) => {
-      xhr.open(method, url);
+      xhr.open(method, url, true);
       xhr.responseType = 'json';
-      // xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      xhr.send();
+      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+      xhr.send(JSON.stringify(data));
       xhr.onreadystatechange = () => {
         if (xhr.readyState !== 4) {
           return;
@@ -28,22 +30,33 @@ export class HttpService {
   }
 
   get(url: string): Observable<any> {
-    return this.getRequestState('GET', url);
+    return this.getHttpRequestState('GET', url);
   }
 
   post(url: string, data: any): Observable<any> {
-    return this.getRequestState('POST', url, data);
+    return this.getHttpRequestState('POST', url, data);
   }
 
   patch(url: string, data: any): Observable<any> {
-    return this.getRequestState('PATCH', url, data);
-  }
-
-  put(url: string, data: any): Observable<any> {
-    return this.getRequestState('PUT', url, data);
+    return this.getHttpRequestState('PATCH', url, data);
   }
 
   delete(url: string): Observable<any> {
-    return this.getRequestState('DELETE', url);
+    const xhr = new XMLHttpRequest();
+    return new Observable((observer: Observer<any>) => {
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState !== 4) {
+          return;
+        }
+        if (xhr.status === 200) {
+          observer.next(xhr);
+        } else {
+          observer.error(xhr);
+        }
+      };
+      xhr.open("DELETE", url, true);
+      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+      xhr.send();
+    });
   }
 }
