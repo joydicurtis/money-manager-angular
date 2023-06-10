@@ -1,0 +1,17 @@
+<div class="title-panel">
+  <h1>Blog</h1>
+  <button color="accent" mat-fab (click)="openHttpTestDialog()" aria-label="Add">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<ng-container *ngIf="testData; else emptyState">
+  <app-blog-item
+    *ngFor="let item of testData"
+    [item]="item"
+    (editEvent)="openEditDialog($event)"
+    (deleteEvent)="deleteTestItem($event)"
+  ></app-blog-item>
+</ng-container>
+<ng-template #emptyState
+  >Please turn on the server <code>json-server --watch db.json</code></ng-template
+>

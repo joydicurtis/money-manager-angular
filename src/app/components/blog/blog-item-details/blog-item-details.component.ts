@@ -4,11 +4,11 @@ import { HttpTestService } from 'src/app/services/http-test.service';
 import { TestData } from '../../../shared/transaction-types';
 
 @Component({
-  selector: 'app-http-test-details',
-  templateUrl: './http-test-details.component.html',
-  styleUrls: ['./http-test-details.component.scss']
+  selector: 'app-blog-item-details',
+  templateUrl: './blog-item-details.component.html',
+  styleUrls: ['./blog-item-details.component.scss']
 })
-export class HttpTestDetailsComponent implements OnInit {
+export class BlogItemDetailsComponent implements OnInit {
   id!: number;
   testUrl = 'http://localhost:3000/posts/';
   post!: TestData;
@@ -20,9 +20,5 @@ export class HttpTestDetailsComponent implements OnInit {
    });
 
    this.httpTestService.getPostById(this.testUrl, this.id).subscribe(data => this.post = data);
-  }
-
-  edit() {
-    console.log('go to edit');
   }
 }

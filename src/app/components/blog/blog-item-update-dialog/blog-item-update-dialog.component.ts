@@ -2,24 +2,24 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormControl, FormGroup, } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpTestService } from 'src/app/services/http-test.service';
-import { Transaction } from '../../../shared/transaction-types';
+import { TestData } from '../../../shared/transaction-types';
 import { minLengthValidator } from 'src/app/shared/validators';
 
 @Component({
-  selector: 'app-http-test-dialog',
-  templateUrl: './http-test-dialog.component.html',
-  styleUrls: ['./http-test-dialog.component.scss'],
+  selector: 'app-blog-item-update-dialog',
+  templateUrl: './blog-item-update-dialog.component.html',
+  styleUrls: ['./blog-item-update-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'http-test-dialog transaction-dialog',
   },
 })
-export class HttpTestDialogComponent implements OnInit {
+export class BlogItemUpdateDialogComponent implements OnInit {
   httpTestForm!: FormGroup;
   isSubmitted = false;
   url = 'http://localhost:3000/posts/'
-  constructor(private dialogRef: MatDialogRef<HttpTestDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: Transaction[], protected httpTestService: HttpTestService,) {
+  constructor(private dialogRef: MatDialogRef<BlogItemUpdateDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData: TestData, protected httpTestService: HttpTestService,) {
   }
 
   ngOnInit() {
@@ -29,11 +29,10 @@ export class HttpTestDialogComponent implements OnInit {
       tags: new FormArray([
         new FormControl('', [minLengthValidator(1)])
       ])
-    })
-  }
-
-  searchUser(text: string) {
-    return this.httpTestService.getPostByTitle(`http://localhost:3000/posts?title=`, text);
+    });
+    if (this.dialogData) {
+      this.loadData();
+    }
   }
 
   get aliasesArrayControl() {
@@ -42,6 +41,14 @@ export class HttpTestDialogComponent implements OnInit {
 
   get tagsControl() {
     return (this.httpTestForm.get('tags') as FormArray);
+  }
+
+  loadData() {
+    this.httpTestForm.setValue({
+      titleControl: this.dialogData.title,
+      bodyControl: this.dialogData.body,
+      tags: this.dialogData.tags
+    });
   }
 
   submit() {

@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
 import { Transaction } from '../../shared/transaction-types';
-import { fromEvent } from 'rxjs';
+import { fromEvent, map } from 'rxjs';
 
 @Component({
   selector: 'app-transactions',
@@ -33,7 +33,6 @@ export class TransactionsComponent implements OnInit {
     this.getItems();
     const s = fromEvent(this.searchControl.nativeElement, 'input');
     s.subscribe((input: any) => {
-      console.log('input', input, typeof(input));
       if (input.target.value === '') {
         this.getItems();
       }
@@ -41,8 +40,14 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  protected getItems() {
-    this._manageService.getTransactions().subscribe((data) => {
+  protected getItems(): void {
+    this._manageService.getTransactions().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
       if (this.incomesMode) {
         this.title = 'Incomes';
         this.transactions = data.filter(

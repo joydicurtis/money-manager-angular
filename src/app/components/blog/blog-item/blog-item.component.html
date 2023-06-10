@@ -1,6 +1,13 @@
 <div class="post">
   <h4>
     <a [routerLink]="['/http-test', item.id]">{{ item.title }}</a>
+    <p>Last update: {{ item.date | date : 'medium' }}</p>
+    <button mat-icon-button type="button" (click)="editItem(item)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button type="button" (click)="deleteItem(item)">
+      <mat-icon>delete</mat-icon>
+    </button>
   </h4>
   <div class="post__item">
     <div class="post__content">

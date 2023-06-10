@@ -1,5 +1,5 @@
-<h1 class="transactions__title">{{ title }}</h1>
-<div class="transactions__action">
+<div class="title-panel">
+  <h1>{{ title }}</h1>
   <button
     color="accent"
     mat-fab
@@ -27,8 +27,8 @@
       *ngFor="let item of transaction.data"
       tabindex="1"
       [item]="item"
-      (onDeleteEvent)="deleteItem($event)"
-      (onEditEvent)="openEditDialog($event)"
+      (deleteEvent)="deleteItem($event)"
+      (editEvent)="openEditDialog($event)"
     ></app-transaction-item>
   </div>
 </ng-container>

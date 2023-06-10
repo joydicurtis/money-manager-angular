@@ -27,23 +27,21 @@ import { GroupByDatePipe } from './pipes/group-by-date.pipe';
 import { ShowOnFocusDirective } from './directives/show-on-focus.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpTestComponent } from './components/http-test/http-test.component';
+import { BlogComponent } from './components/blog/blog.component';
 import { HomeComponent } from './components/home/home.component';
 import { CurrencyDataComponent } from './components/currency-data/currency-data.component';
-import { HttpTestDialogComponent } from './components/http-test/http-test-dialog/http-test-dialog.component';
-import { HttpTestDetailsComponent } from './components/http-test/http-test-details/http-test-details.component';
-import { HttpTestDetailsEditComponent } from './components/http-test/http-test-details-edit/http-test-details-edit.component';
+import { BlogItemUpdateDialogComponent } from './components/blog/blog-item-update-dialog/blog-item-update-dialog.component';
+import { BlogItemDetailsComponent } from './components/blog/blog-item-details/blog-item-details.component';
+import { BlogItemEditComponent } from './components/blog/blog-item-edit/blog-item-edit.component';
 import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
 import { LoggedDirective } from './directives/logged.directive';
-import { HttpTestTooltipComponent } from './components/http-test/http-test-tooltip/http-test-tooltip.component';
-import { HttpTestItemComponent } from './components/http-test/http-test-item/http-test-item.component';
+import { BlogItemTooltipComponent } from './components/blog/blog-item-tooltip/blog-item-tooltip.component';
+import { BlogItemComponent } from './components/blog/blog-item/blog-item.component';
 import { SortByDatePipe } from './pipes/sort-by-date.pipe';
 
-
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,16 +53,16 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     GroupByDatePipe,
     ShowOnFocusDirective,
     CurrencyPipe,
-    HttpTestComponent,
+    BlogComponent,
     HomeComponent,
     CurrencyDataComponent,
-    HttpTestDialogComponent,
-    HttpTestDetailsComponent,
-    HttpTestDetailsEditComponent,
+    BlogItemUpdateDialogComponent,
+    BlogItemDetailsComponent,
+    BlogItemEditComponent,
     AuthDialogComponent,
     LoggedDirective,
-    HttpTestTooltipComponent,
-    HttpTestItemComponent,
+    BlogItemTooltipComponent,
+    BlogItemComponent,
     SortByDatePipe
   ],
   imports: [
@@ -87,13 +85,12 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     CommonModule,
     MatDialogModule,
     MatTabsModule,
-    AngularFireModule,
-    AngularFirestoreModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // for firestore
+    HttpClientModule,
   ],
   exports: [MatInputModule],
-  providers: [MatDatepickerModule, { provide: 'ApiURL', useValue: 'some-url', multi: true }, { provide: 'ApiURL', useValue: 'some-url1', multi: true }],
+  providers: [AngularFirestoreModule, MatDatepickerModule, { provide: 'ApiURL', useValue: 'some-url', multi: true }, { provide: 'ApiURL', useValue: 'some-url1', multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

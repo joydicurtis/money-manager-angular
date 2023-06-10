@@ -21,29 +21,30 @@ export class AuthDialogComponent implements OnInit {
 
   ngOnInit() {
     this.authForm = new FormGroup({
-      emailControl: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')], this.userExistsValidator.bind(this)),
+      emailControl: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+      // this.userExistsValidator.bind(this)
+      ),
       passwordControl: new FormControl('', [Validators.required]),
       repeatPasswordControl: new FormControl('', [Validators.required])
     }, {validators: matchValidator })
   }
 
-  userExistsValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
-    return this.authService.getUserByEmail(control.value).pipe(delay(1000),
-      map(x => {
-        if (x.length > 0) {
-          return { userExistsValidator: { message: 'User with such email already exists!' } }
-        }
-        return null;
-      }), take(1)
-    );
-  };
+  // userExistsValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
+  //   return this.authService.getUserByEmail(control.value).pipe(delay(1000),
+  //     map(x => {
+  //       if (x.length > 0) {
+  //         return { userExistsValidator: { message: 'User with such email already exists!' } }
+  //       }
+  //       return null;
+  //     }), take(1)
+  //   );
+  // };
 
   close() {
     this.dialogRef.close();
   }
   submit() {
     this.isSubmitted = true;
-    console.log('auth', this.authForm);
     if (!this.authForm.valid) {
       this.authForm.markAllAsTouched();
     } else {
