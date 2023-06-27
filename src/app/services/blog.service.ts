@@ -6,7 +6,7 @@ import { TestData } from '../shared/transaction-types';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpTestService {
+export class BlogService {
 
   constructor(protected httpService: HttpService) {}
 
@@ -16,16 +16,7 @@ export class HttpTestService {
 
   getPostById(url: string, id: number): Observable<TestData> {
     const testUrl = `${url}${id}`;
-    return this.httpService.get(testUrl).pipe(
-      catchError(error => {
-          if (error.error instanceof ErrorEvent) {
-              console.log(`Error: ${error.error.message}`);
-          } else {
-            console.log(`Error: ${error.message}`);
-          }
-          return of([]);
-      })
-  );
+    return this.httpService.get(testUrl);
   }
 
   postTestData(url: string, body: TestData): Observable<TestData> {

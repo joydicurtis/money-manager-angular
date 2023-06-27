@@ -1,9 +1,9 @@
-import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ManageService } from '../../services/manage.service';
 import { TransactionsDialogComponent } from './transactions-dialog/transactions-dialog.component';
 import { Transaction } from '../../shared/transaction-types';
-import { fromEvent, map } from 'rxjs';
+import { Subject, fromEvent, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-transactions',
@@ -15,13 +15,14 @@ import { fromEvent, map } from 'rxjs';
   },
 })
 
-export class TransactionsComponent implements OnInit {
+export class TransactionsComponent implements OnInit, OnDestroy {
   public transactions?: Transaction[];
   manageDialogRef!: MatDialogRef<TransactionsDialogComponent>;
   title!: string;
   @ViewChild('searchControl', { static: true }) searchControl!: ElementRef;
   @Input() incomesMode?: boolean = false;
   @Input() expensesMode?: boolean = false;
+  destroyed = new Subject();
 
   constructor(
     private _manageService: ManageService,
@@ -40,6 +41,11 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.destroyed.next(this);
+    this.destroyed.complete();
+  }
+
   protected getItems(): void {
     this._manageService.getTransactions().snapshotChanges().pipe(
       map(changes =>
@@ -47,7 +53,7 @@ export class TransactionsComponent implements OnInit {
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
         )
       )
-    ).subscribe(data => {
+    ).pipe(takeUntil(this.destroyed)).subscribe(data => {
       if (this.incomesMode) {
         this.title = 'Incomes';
         this.transactions = data.filter(

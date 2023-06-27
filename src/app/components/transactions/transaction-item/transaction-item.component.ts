@@ -21,6 +21,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 export class TransactionItemComponent implements OnInit {
   @Input() item!: Transaction;
+  @Input() idx: number;
   @Output() deleteEvent = new EventEmitter<Transaction>();
   @Output() editEvent = new EventEmitter<Transaction>();
   @HostBinding('class.transaction--income') isIncome = false;

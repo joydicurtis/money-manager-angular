@@ -1,11 +1,12 @@
-import { HttpTestService } from './http-test.service';
-import { HttpService } from './http.service';
-import { Subject, of, takeUntil } from 'rxjs';
+import { BlogService } from '../services/blog.service';
+import { HttpService } from '../services/http.service';
+import { Subject, lastValueFrom, of, takeUntil, throwError } from 'rxjs';
 
-describe('HttpTestService', () => {
-  let service: HttpTestService;
+describe('BlogService', () => {
+  let service: BlogService;
   const destroy$$: Subject<void> = new Subject<void>();
   const apiBaseUrl = 'https://jsonplaceholder.typicode.com/todos/';
+  let consoleError: jest.SpyInstance;
 
   const mockItem = {
     "userId": 2,
@@ -39,12 +40,14 @@ describe('HttpTestService', () => {
   const httpCustomService = new HttpService();
 
   beforeEach(() => {
-    service = new HttpTestService(httpCustomService);
+    service = new BlogService(httpCustomService);
+    consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
   });
 
   afterEach(() => {
     destroy$$.next();
     jest.resetAllMocks();
+    consoleError.mockRestore();
   });
 
   afterAll(() => {
@@ -115,4 +118,41 @@ describe('HttpTestService', () => {
         done();
       })
   })
+
+  // Error cases
+
+  it('should throw an error in GET function', async () => {
+    const mockError = new Error('Request failed');
+
+    jest.spyOn(httpCustomService, 'get').mockReturnValue(throwError(() => mockError));
+
+    let error;
+
+    try {
+      await lastValueFrom(service.getPosts(apiBaseUrl));
+    } catch (err) {
+      error = err;
+    }
+
+    expect(error).toEqual(mockError);
+  });
+
+  it('should throw an error in POST function', async () => {
+    const mockError = new Error('Request failed');
+
+    jest.spyOn(httpCustomService, 'post').mockReturnValue(throwError(() => mockError));
+
+    let error;
+    try {
+      await lastValueFrom(service.postTestData(apiBaseUrl, mockPostItem));
+    } catch (err) {
+      error = err;
+    }
+
+    expect(error).toEqual(mockError);
+  });
 });
+
+
+
+

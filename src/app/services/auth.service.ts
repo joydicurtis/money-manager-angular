@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  doc,
-  query,
-  setDoc,
-} from 'firebase/firestore';
-import { collectionData, collection, where } from '@angular/fire/firestore';
 import { User } from '../shared/transaction-types';
-import { FormGroup } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 @Injectable({
@@ -18,7 +11,7 @@ export class AuthService {
 
   usersRef: AngularFirestoreCollection<User>;
 
-  constructor(private db: AngularFirestore) {
+  constructor(protected db: AngularFirestore) {
     this.usersRef = db.collection(this.dbPath);
   }
 
@@ -40,15 +33,12 @@ export class AuthService {
     return this.isSignedIn;
   }
 
-  public getUsers(): AngularFirestoreCollection<User> {
-    return this.usersRef;
-  }
+  //TODO: fix user validation
+  // public getUserByEmail(email: string) {
+  //   return this.usersRef.doc(email);
+  // }
 
-  public getUserByEmail(email: string) {
-    return this.usersRef.doc(email);
-  }
-
-  public addUsers(item: FormGroup) {
+  public addUsers(item: any) {
     return this.usersRef.add({
       email: item.value.emailControl,
       password: item.value.passwordControl

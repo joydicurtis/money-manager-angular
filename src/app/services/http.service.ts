@@ -6,14 +6,12 @@ import { Observable, Observer } from 'rxjs';
 })
 
 export class HttpService {
-
-  getHttpRequestState(method, url, data?): Observable<unknown> {
-    const xhr = new XMLHttpRequest();
+  private getHttpRequestState(method: string, url: string, data?: any): Observable<any> {
     return new Observable((observer: Observer<any>) => {
+      const xhr = new XMLHttpRequest();
       xhr.open(method, url, true);
       xhr.responseType = 'json';
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      xhr.send(JSON.stringify(data));
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
       xhr.onreadystatechange = () => {
         if (xhr.readyState !== 4) {
           return;
@@ -26,6 +24,8 @@ export class HttpService {
           observer.error(xhr.response);
         }
       };
+
+      data ? xhr.send(JSON.stringify(data)) : xhr.send();
     });
   }
 
@@ -42,21 +42,6 @@ export class HttpService {
   }
 
   delete(url: string): Observable<any> {
-    const xhr = new XMLHttpRequest();
-    return new Observable((observer: Observer<any>) => {
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState !== 4) {
-          return;
-        }
-        if (xhr.status === 200) {
-          observer.next(xhr);
-        } else {
-          observer.error(xhr);
-        }
-      };
-      xhr.open("DELETE", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      xhr.send();
-    });
+    return this.getHttpRequestState('DELETE', url);
   }
 }

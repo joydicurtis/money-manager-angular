@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormControl, FormGroup, } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpTestService } from 'src/app/services/http-test.service';
+import { BlogService } from 'src/app/services/blog.service';
 import { TestData } from '../../../shared/transaction-types';
 import { minLengthValidator } from 'src/app/shared/validators';
 
@@ -19,7 +19,7 @@ export class BlogItemUpdateDialogComponent implements OnInit {
   isSubmitted = false;
   url = 'http://localhost:3000/posts/'
   constructor(private dialogRef: MatDialogRef<BlogItemUpdateDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: TestData, protected httpTestService: HttpTestService,) {
+    @Inject(MAT_DIALOG_DATA) public dialogData: TestData, protected blogService: BlogService,) {
   }
 
   ngOnInit() {

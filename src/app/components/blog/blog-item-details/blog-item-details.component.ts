@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpTestService } from 'src/app/services/http-test.service';
+import { BlogService } from 'src/app/services/blog.service';
 import { TestData } from '../../../shared/transaction-types';
 
 @Component({
@@ -12,13 +12,13 @@ export class BlogItemDetailsComponent implements OnInit {
   id!: number;
   testUrl = 'http://localhost:3000/posts/';
   post!: TestData;
-  constructor(private route: ActivatedRoute, protected httpTestService: HttpTestService) {}
+  constructor(private route: ActivatedRoute, protected blogService: BlogService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
    });
 
-   this.httpTestService.getPostById(this.testUrl, this.id).subscribe(data => this.post = data);
+   this.blogService.getPostById(this.testUrl, this.id).subscribe(data => this.post = data);
   }
 }

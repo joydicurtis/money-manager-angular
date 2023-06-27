@@ -1,10 +1,11 @@
 <div class="title-panel">
-  <h1>{{ title }}</h1>
+  <h1 class="title-panel__name">{{ title }}</h1>
   <button
     color="accent"
     mat-fab
     (click)="openDialog(undefined, incomesMode, expensesMode)"
     aria-label="Add"
+    data-cy="transaction-add-btn"
   >
     <mat-icon>add</mat-icon>
   </button>
@@ -17,15 +18,16 @@
 </div>
 <ng-container *ngIf="transactions && transactions.length > 0; else emptyState">
   <div
-    *ngFor="let transaction of transactions | groupByDate | sortByDate"
+    *ngFor="let transaction of transactions | groupByDate | sortByDate; let i = index"
     class="transactions__item"
   >
     <p>
-      <strong>{{ transaction.key | date : 'dd/MM/yyyy' }}</strong>
+      <strong>{{ transaction.date | date : 'dd/MM/yyyy' }}</strong>
     </p>
     <app-transaction-item
       *ngFor="let item of transaction.data"
       tabindex="1"
+      [idx]="i"
       [item]="item"
       (deleteEvent)="deleteItem($event)"
       (editEvent)="openEditDialog($event)"
