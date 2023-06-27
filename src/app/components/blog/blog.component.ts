@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { CurrencyService } from 'src/app/services/currency.service';
-import { HttpTestService } from 'src/app/services/http-test.service';
+import { BlogService } from 'src/app/services/blog.service';
 import { TestData } from '../../shared/transaction-types';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BlogItemUpdateDialogComponent } from './blog-item-update-dialog/blog-item-update-dialog.component';
@@ -20,7 +20,7 @@ export class BlogComponent implements OnInit {
   testUrl = 'http://localhost:3000/posts/';
   httpTestDialogRef!: MatDialogRef<BlogItemUpdateDialogComponent>;
 
-  constructor(protected currencyService: CurrencyService, protected httpTestService: HttpTestService, public dialog: MatDialog, public renderer: Renderer2) {}
+  constructor(protected currencyService: CurrencyService, protected blogService: BlogService, public dialog: MatDialog, public renderer: Renderer2) {}
 
   ngOnInit() {
     this.getHttpTest();
@@ -45,7 +45,7 @@ export class BlogComponent implements OnInit {
   }
 
   getHttpTest(): void {
-    this.httpTestService.getPosts(this.testUrl).subscribe(data => this.testData = data);
+    this.blogService.getPosts(this.testUrl).subscribe(data => this.testData = data);
   }
 
   addTestItem(formData: FormGroup): void {
@@ -56,7 +56,7 @@ export class BlogComponent implements OnInit {
         tags: formData.controls['tags'].value,
         date: new Date()
       }
-      this.httpTestService.postTestData(this.testUrl, data).subscribe();
+      this.blogService.postTestData(this.testUrl, data).subscribe();
       this.getHttpTest();
     }
   }
@@ -69,12 +69,12 @@ export class BlogComponent implements OnInit {
       tags: formData.controls['tags'].value,
       date: new Date()
     }
-    this.httpTestService.patchTestData(this.testUrl, data).subscribe();
+    this.blogService.patchTestData(this.testUrl, data).subscribe();
     this.getHttpTest();
   }
 
   deleteTestItem(item: TestData) {
-    this.httpTestService.deleteTestData(this.testUrl, item.id).subscribe();
+    this.blogService.deleteTestData(this.testUrl, item.id).subscribe();
     this.getHttpTest();
   }
 }

@@ -17,7 +17,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'post',
+    class: 'blog-item',
   },
 })
 export class BlogItemComponent {

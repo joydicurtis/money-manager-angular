@@ -1,33 +1,26 @@
-<div class="post">
-  <h4>
-    <a [routerLink]="['/http-test', item.id]">{{ item.title }}</a>
-    <p>Last update: {{ item.date | date : 'medium' }}</p>
-    <button mat-icon-button type="button" (click)="editItem(item)">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-icon-button type="button" (click)="deleteItem(item)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </h4>
-  <div class="post__item">
-    <div class="post__content">
-      <p class="post__content-text">
-        {{ item.body }}
-      </p>
-      <ng-template #dynamic>
-        {{ item.body }}
-      </ng-template>
-    </div>
-    <button
-      mat-icon-button
-      color="primary"
-      (click)="isDynamicTooltipVisible = !isDynamicTooltipVisible; showDynamicComponent()"
-      aria-label="Preview"
-    >
-      <mat-icon>{{ isDynamicTooltipVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-    </button>
-  </div>
-  <ul class="http-test__tags">
-    <li *ngFor="let tag of item.tags; last as isLast">#{{ tag }} {{ isLast ? '' : ', ' }}</li>
-  </ul>
+<h2 class="blog-item__title">
+  <a class="blog-item__title-link" [routerLink]="['/http-test', item.id]">{{ item.title }}</a>
+</h2>
+<p class="blog-item__date">Last updated: {{ item.date | date : 'medium' }}</p>
+<div class="blog-item__content">
+  {{ item.body }}
+  <ng-template #dynamic>
+    {{ item.body }}
+  </ng-template>
+</div>
+<ul class="blog-item__tags">
+  <li class="blog-item__tags-item" *ngFor="let tag of item.tags; last as isLast">
+    #{{ tag }} {{ isLast ? '' : ', ' }}
+  </li>
+</ul>
+<div class="blog-item__actions">
+  <button
+    mat-button
+    (click)="isDynamicTooltipVisible = !isDynamicTooltipVisible; showDynamicComponent()"
+    aria-label="Preview"
+  >
+    Preview
+  </button>
+  <button mat-button type="button" (click)="editItem(item)">Edit</button>
+  <button mat-button type="button" (click)="deleteItem(item)">Remove</button>
 </div>

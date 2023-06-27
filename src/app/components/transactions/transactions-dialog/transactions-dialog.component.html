@@ -4,7 +4,7 @@
     <mat-icon>close</mat-icon>
   </button>
 </div>
-<form [formGroup]="transactionFormGroup">
+<form [formGroup]="transactionFormGroup" data-cy="transaction-form">
   <mat-dialog-content>
     <div class="transaction-dialog__type">
       <mat-button-toggle-group
@@ -12,23 +12,33 @@
         aria-label="transactionType"
         formControlName="typeControl"
       >
-        <mat-button-toggle [value]="type" *ngFor="let type of transactionTypes">
+        <mat-button-toggle
+          [value]="type"
+          *ngFor="let type of transactionTypes"
+          [attr.data-cy]="'transaction-type-btn-' + type.name.toLowerCase()"
+        >
           {{ type.name }}
         </mat-button-toggle>
       </mat-button-toggle-group>
       <mat-error
         *ngIf="isSubmitted && transactionFormGroup.controls['typeControl'].errors?.['required']"
+        data-cy="type-control-error"
       >
         This field is required
       </mat-error>
     </div>
     <mat-form-field>
       <mat-label>Amount</mat-label>
-      <input matInput type="text" formControlName="amountControl" />
-      <mat-error *ngIf="transactionFormGroup.controls['amountControl'].errors?.['required']">
+      <input
+        matInput
+        type="text"
+        formControlName="amountControl"
+        data-cy="transaction-amount-control"
+      />
+      <mat-error *ngIf="transactionFormGroup.controls['amountControl'].errors?.['required']" data-cy="amount-control-error">
         This field is required
       </mat-error>
-      <mat-error *ngIf="transactionFormGroup.controls['amountControl'].errors?.['pattern']">
+      <mat-error *ngIf="transactionFormGroup.controls['amountControl'].errors?.['pattern']" data-cy="amount-control-pattern-error">
         Amount should be composed only from numbers, and have only two decimals
       </mat-error>
     </mat-form-field>
@@ -51,7 +61,7 @@
         class="transaction-dialog__categories-item"
         *ngFor="let category of categories; let i = index"
       >
-        <mat-radio-button [value]="category">
+        <mat-radio-button [value]="category" [attr.data-cy]="'transaction-category-btn-' + i">
           <mat-icon>
             {{ category.icon }}
           </mat-icon>
@@ -73,11 +83,20 @@
         formControlName="noteControl"
         cdkAutosizeMinRows="3"
         cdkAutosizeMaxRows="5"
+        data-cy="transaction-note-control"
       ></textarea>
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-flat-button (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" type="submit" (click)="submit()">Save</button>
+    <button mat-flat-button (click)="close()" data-cy="transaction-dialog-close-btn">Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      (click)="submit()"
+      data-cy="transaction-submit-btn"
+    >
+      Save
+    </button>
   </mat-dialog-actions>
 </form>
