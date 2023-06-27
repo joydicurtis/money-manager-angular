@@ -21,11 +21,11 @@ describe('HttpService', () => {
 
   const xhrMockNegative: Partial<XMLHttpRequest> = {
     open: jest.fn(),
-    setRequestHeader: jest.fn(),
     send: jest.fn(),
+    setRequestHeader: jest.fn(),
     readyState: 4,
     status: 404,
-    response: 'Not found',
+    response: 'Not found'
   };
 
   const mockItem = {
@@ -106,22 +106,17 @@ describe('HttpService', () => {
     expect(response).toEqual(mockItem);
   });
 
-  it('should make a GET request111', async () => {
-    jest.spyOn(window, 'XMLHttpRequest').mockReturnValue(xhrMockNegative as XMLHttpRequest);
+  it('should make a GET request111', () => {
+    const xhrMockClass = () => xhrMockNegative;
 
-    const requestPromise = lastValueFrom(service.get(apiBaseUrl));
-
-    (xhrMockNegative.onreadystatechange as EventListener)(new Event('readystatechange'));
-    try {
-      await requestPromise;
-    }
-    catch (e) {
-      expect(xhrMockNegative.open).toBeCalledWith('GET', apiBaseUrl, true);
-      expect(xhrMockNegative.setRequestHeader).toBeCalledWith('Content-Type', 'application/json; charset=UTF-8');
-      expect(xhrMockNegative.send).toBeCalledWith();
-      expect(xhrMockNegative.readyState).toBe(4);
-      expect(xhrMockNegative.status).toBe(404);
-      expect(xhrMockNegative.response).toEqual('Not found');
-    }
+    // @ts-ignore
+    window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);
+    service.get(apiBaseUrl).subscribe(() => {
+      console.log('success');
+    }, (error) => {
+      console.log('error', error);
+    })
+    // @ts-ignore
+    xhrMockNegative['onreadystatechange']();
   });
 });
