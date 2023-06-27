@@ -8,12 +8,10 @@ import { HttpService } from './http.service';
 })
 export class CurrencyService {
   xhr = new XMLHttpRequest();
-  apiKey = '6550c273190533ff21030121';
 
   constructor(protected httpService: HttpService) {}
 
-  getCurrencyRate(cur: string): Observable<CurrencyData> {
-    const requestURL = `https://v6.exchangerate-api.com/v6/${this.apiKey}/latest/${cur}`;
-    return this.httpService.get(requestURL);
+  getCurrencyRate(url: string): Observable<CurrencyData> {
+    return this.httpService.get(url);
   }
 }

@@ -16,25 +16,25 @@ export class ManageService {
     this.expensesRef = db.collection(this.dbPath);
   }
 
-  public addTransaction(item: FormGroup) {
-    return this.expensesRef.add({
-      type: item.value.typeControl,
-      sum: Number(item.value.amountControl),
-      date: item.value.dateControl,
-      category: item.value.categories,
-      note: item.value.noteControl,
-     });
-  }
-
   public getTransactions(): AngularFirestoreCollection<Transaction> {
     return this.expensesRef;
+  }
+
+  public addTransaction(item: any) {
+    return this.expensesRef.add({
+      type: item?.value?.typeControl,
+      sum: Number(item?.value?.amountControl),
+      date: item.value.dateControl,
+      category: item.value.categories,
+      note: item?.value?.noteControl,
+     });
   }
 
   public async deleteTransaction(id: string): Promise<void> {
     return this.expensesRef.doc(id).delete();
   }
 
-  public updateTransaction(item: Transaction): Promise<void> {
+  public updateTransaction(item: any): Promise<void> {
     return this.expensesRef.doc(item.id).update(item);
   }
 }

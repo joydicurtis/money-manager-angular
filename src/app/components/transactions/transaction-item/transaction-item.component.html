@@ -11,10 +11,22 @@
     </div>
   </div>
   <div class="transaction__item-actions">
-    <button mat-mini-fab color="primary" aria-label="Edit" (click)="editItem(item)">
+    <button
+      mat-mini-fab
+      color="primary"
+      aria-label="Edit"
+      (click)="editItem(item)"
+      [attr.data-cy]="'transaction-edit-btn-' + idx"
+    >
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteItem(item)">
+    <button
+      mat-icon-button
+      color="warn"
+      aria-label="Delete"
+      (click)="deleteItem(item)"
+      [attr.data-cy]="'transaction-delete-btn-' + idx"
+    >
       <mat-icon>delete</mat-icon>
     </button>
   </div>

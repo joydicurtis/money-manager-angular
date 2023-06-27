@@ -31,7 +31,10 @@ export class CurrencyDataComponent implements OnInit {
 
   currencyChange(selectedCurrency: CurrencyRate) {
     this.currencyRes = [];
-    this.currencyService.getCurrencyRate(selectedCurrency.name).subscribe({
+    const cur = selectedCurrency.name;
+    const apiKey = '6550c273190533ff21030121';
+    const requestURL = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${cur}`;
+    this.currencyService.getCurrencyRate(requestURL).subscribe({
       next: (response: CurrencyData) => {
         this.currencies.forEach(value => {
           if (value.name !== this.selectedCurrency.name) {

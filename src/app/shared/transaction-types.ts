@@ -3,7 +3,7 @@ import { Timestamp } from 'firebase/firestore';
 export type Transaction = {
   id?: string;
   type: TransactionType;
-  date: Timestamp;
+  date: any;
   sum: number;
   category: Category;
   note: string;
@@ -27,7 +27,7 @@ export type dialogData = {
 }
 
 export type TransactionGroup = {
-  key: string | Date;
+  date: string | Date;
   data: Transaction[];
 }
 

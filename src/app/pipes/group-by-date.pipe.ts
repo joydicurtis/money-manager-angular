@@ -9,7 +9,7 @@ transform(value: Transaction[] = []): TransactionGroup[] {
     if(!value) {
       return [];
     }
-    const grouppedData = value.reduce((prev: {[key: string]: Transaction[]}, cur: Transaction) => {
+    const grouppedData = value.reduce((prev: {[date: string]: Transaction[]}, cur: Transaction) => {
       if (!prev[String(cur['date'].toDate())]) {
         prev[String(cur['date'].toDate())] = [cur];
       } else {
@@ -17,6 +17,6 @@ transform(value: Transaction[] = []): TransactionGroup[] {
       }
       return prev;
     }, {});
-    return Object.keys(grouppedData).map(key => ({ key, data: grouppedData[key] }));
+    return Object.keys(grouppedData).map(date => ({ date, data: grouppedData[date] }));
   }
 }
