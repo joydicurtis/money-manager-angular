@@ -13,6 +13,7 @@ export class HttpService {
       xhr.responseType = 'json';
       xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
       xhr.onreadystatechange = () => {
+        console.log('readyState', xhr.readyState, xhr.status);
         if (xhr.readyState !== 4) {
           return;
         }
@@ -21,6 +22,7 @@ export class HttpService {
           observer.next(xhr.response);
           observer.complete();
         } else {
+          console.log('readyState1', xhr.readyState, xhr.status);
           observer.error(xhr.response);
         }
       };
