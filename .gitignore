@@ -51,7 +51,7 @@ Thumbs.db
 /cypress/downloads
 /cypress/fixtures
 /cypress/screenshots
-/cypress/suport
+/cypress/support
 /cypress/videos
 
 .angular
