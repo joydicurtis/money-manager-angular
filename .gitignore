@@ -33,6 +33,7 @@ yarn-error.log
 .sass-cache/
 /connect.lock
 /coverage
+/cyp
 /libpeerconnection.log
 testem.log
 /typings
@@ -45,3 +46,12 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+#Cypress
+/cypress/downloads
+/cypress/fixtures
+/cypress/screenshots
+/cypress/suport
+/cypress/videos
+
+.angular
