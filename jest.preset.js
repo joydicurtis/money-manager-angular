@@ -6,7 +6,7 @@ const globalConfig = {
   */
   workerIdleMemoryLimit: '500MB',
   collectCoverage: true,
-  coverageDirectory: `${process.env.NX_WORKSPACE_ROOT}/coverage/${process.env['NX_TASK_TARGET_PROJECT']}`,
+  coverageDirectory: `<rootDir>/coverage`,
 };
 
 module.exports = { ...globalConfig };
