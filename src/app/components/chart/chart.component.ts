@@ -36,10 +36,10 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
           this.transactions = data;
             this.dataArray = [
               {
-                key: 'Expense', sum: data.filter((item) => item.type.value === 'expense').reduce((sum, current) => sum + current.sum, 0)
+                key: 'Incomes', sum: data.filter((item) => item.type.value === 'income').reduce((sum, current) => sum + current.sum, 0)
               },
               {
-                key: 'Income', sum: data.filter((item) => item.type.value === 'income').reduce((sum, current) => sum + current.sum, 0)
+                key: 'Expenses', sum: data.filter((item) => item.type.value === 'expense').reduce((sum, current) => sum + current.sum, 0)
               },
             ];
             this.chart = new Chart(
@@ -51,7 +51,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
                   datasets: [
                     {
                       data: this.dataArray.map(row => row.sum),
-                      backgroundColor: ["#FF4081", "#009688"],
+                      backgroundColor: ["#009688", "#FF4081"],
                     }
                   ]
                 }
