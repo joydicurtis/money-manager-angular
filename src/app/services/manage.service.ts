@@ -1,24 +1,39 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Transaction } from '../shared/transaction-types';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class ManageService {
-  private dbPath = '/transactions';
+  private dbPath = 'transactions';
 
   expensesRef: AngularFirestoreCollection<Transaction>;
+  business$: Observable<any[]>;
 
-  constructor(private db: AngularFirestore) {
+  constructor(protected db: AngularFirestore) {
     this.expensesRef = db.collection(this.dbPath);
   }
+
+  getAllData(){
+    this.business$ = this.expensesRef.valueChanges();
+    return this.business$;
+ }
 
   public getTransactions(): AngularFirestoreCollection<Transaction> {
     return this.expensesRef;
   }
+
+  public getData(): Observable<any> {
+    return this.getTransactions().snapshotChanges().pipe(
+      map(changes => changes.map(c => ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+      )
+      )
+    );
+  }
+
 
   public addTransaction(item: any) {
     return this.expensesRef.add({

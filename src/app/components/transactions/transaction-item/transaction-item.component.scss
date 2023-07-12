@@ -24,11 +24,11 @@
       border-radius: 8px;
 
       .transaction--income & {
-        background-color: rgba(56, 142, 60, 0.1);
+        background-color: rgba(178, 223, 219, 0.4);
       }
 
       .transaction--expense & {
-        background-color: rgba(211, 47, 47, 0.1);
+        background-color: rgba(248, 187, 208, 0.4)
       }
 
       &--focused {

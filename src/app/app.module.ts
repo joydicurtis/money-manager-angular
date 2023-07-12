@@ -63,7 +63,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoggedDirective,
     BlogItemTooltipComponent,
     BlogItemComponent,
-    SortByDatePipe
+    SortByDatePipe,
   ],
   imports: [
     BrowserModule,

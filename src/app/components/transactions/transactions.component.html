@@ -16,6 +16,7 @@
     <input matInput type="text" #searchControl />
   </mat-form-field>
 </div>
+
 <ng-container *ngIf="transactions && transactions.length > 0; else emptyState">
   <div
     *ngFor="let transaction of transactions | groupByDate | sortByDate; let i = index"
