@@ -27,6 +27,7 @@
     "@angular/router": "^15.2.0",
     "@types/node": "^20.2.5",
     "chart.js": "^4.3.0",
+    "currency-converter": "file:../currency-converter-lib/dist/currency-converter",
     "currency-converter-lib": "^0.2.0",
     "firebase": "^9.15.0",
     "material-icons": "^1.13.3",

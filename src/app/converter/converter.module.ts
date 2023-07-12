@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConverterComponent } from './converter/converter.component';
 import { RouterModule } from '@angular/router';
 import { ConverterRoutingModule } from './converter-routing.module';
-// import { CurrencyConverterLibModule } from 'currency-converter-lib';
+import { CurrencyConverterModule } from 'currency-converter';
 @NgModule({
   declarations: [
     ConverterComponent
@@ -11,7 +11,7 @@ import { ConverterRoutingModule } from './converter-routing.module';
   imports: [
     CommonModule,
     ConverterRoutingModule,
-    // CurrencyConverterLibModule
+    CurrencyConverterModule
   ],
   exports: [RouterModule]
 })
